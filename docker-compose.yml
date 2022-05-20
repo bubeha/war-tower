@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+  traefik:
+    image: traefik:2.7
+    command:
+      --providers.docker=true
+      --providers.docker.exposedByDefault=false
+      --entryPoints.http.address=:80
+    ports:
+      - "80:80"
+    networks:
+      - traefik-public
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+
+  api:
+    build:
+      context: ./api/docker
+      dockerfile: development/nginx/Dockerfile
+    volumes:
+      - "./api:/application"
+    networks:
+      - traefik-public
+      - default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.api.rule=Host(`api.localhost`)
+      - traefik.http.routers.api.entryPoints=http
+      - traefik.http.services.api.loadBalancer.server.port=80
+
+  php-fpm:
+    build:
+      context: ./api/docker
+      dockerfile: development/php-fpm/Dockerfile
+      args:
+        PHP_VERSION: 8.1
+        XDEBUG_VERSION: 3.1.4
+    user: "$_UID:$_GID"
+    volumes:
+      - "./api:/application"
+    environment:
+      PHP_IDE_CONFIG: "serverName=docker"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  php-cli:
+    build:
+      context: ./api/docker
+      dockerfile: development/php-cli/Dockerfile
+      args:
+        PHP_VERSION: 8.1
+        XDEBUG_VERSION: 3.1.4
+    user: "$_UID:$_GID"
+    volumes:
+      - "./api:/application"
+      - "~/.config/composer:/.config/composer"
+      - "~/.cache/composer:/.cache/composer"
+    environment:
+      PHP_IDE_CONFIG: "serverName=docker"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  postgres:
+    image: "postgres:14-alpine"
+    environment:
+      - "POSTGRES_USER=$POSTGRES_USER"
+      - "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"
+      - "POSTGRES_DB=$POSTGRES_DB"
+    ports:
+      - "5432:5432"
+    volumes:
+      - api-postgres:/var/lib/postgresql/data
+
+volumes:
+  api-postgres:
+
+networks:
+  traefik-public:
+    name: traefik-public
