@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Kernel;
 
-require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
 
-return function (array $context) {
-    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
-};
+/**
+ * @param array{APP_ENV: string, APP_DEBUG: int} $context
+ */
+return static fn (array $context) => new Kernel((string)$context['APP_ENV'], (bool)$context['APP_DEBUG']);

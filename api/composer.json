@@ -15,6 +15,11 @@
         "symfony/yaml": "6.0.*"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "overtrue/phplint": "^5.0",
+        "psalm/plugin-symfony": "^3.1",
+        "roave/security-advisories": "dev-latest",
+        "vimeo/psalm": "^4.23"
     },
     "config": {
         "allow-plugins": {
@@ -60,7 +65,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "php-cs-fixer": "php-cs-fixer --config=./.php-cs-fixer.php --allow-risky=yes",
+        "phplint": "phplint",
+        "psalm": "vendor/bin/psalm --config=psalm.xml"
     },
     "conflict": {
         "symfony/symfony": "*"
