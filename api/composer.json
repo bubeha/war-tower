@@ -9,7 +9,9 @@
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/migrations": "^3.5",
         "doctrine/orm": "^2.12",
+        "ramsey/uuid-doctrine": "^1.8",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
         "symfony/flex": "^2",
@@ -26,6 +28,7 @@
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
+        "symfony/maker-bundle": "^1.43",
         "symfony/phpunit-bridge": "^6.0",
         "vimeo/psalm": "^4.23"
     },
