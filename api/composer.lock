@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd492f9ccc3aff7a8109a6493adaa813",
+    "content-hash": "f62b823632173f0f7b7c370b77b3134b",
     "packages": [
         {
             "name": "brick/math",
@@ -6252,71 +6252,6 @@
                 }
             ],
             "time": "2022-04-01T12:37:26+00:00"
-        },
-        {
-            "name": "psalm/plugin-symfony",
-            "version": "v3.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/psalm/psalm-plugin-symfony.git",
-                "reference": "62b37be93df3d1f35dbd8c8509616e567e2466f0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-symfony/zipball/62b37be93df3d1f35dbd8c8509616e567e2466f0",
-                "reference": "62b37be93df3d1f35dbd8c8509616e567e2466f0",
-                "shasum": ""
-            },
-            "require": {
-                "ext-simplexml": "*",
-                "php": "^7.1 || ^8.0",
-                "symfony/framework-bundle": "^4.0 || ^5.0 || ^6.0",
-                "vimeo/psalm": "^4.12"
-            },
-            "require-dev": {
-                "doctrine/annotations": "^1.8",
-                "doctrine/orm": "^2.7",
-                "phpunit/phpunit": "~7.5 || ~9.5",
-                "symfony/cache-contracts": "^1.0 || ^2.0",
-                "symfony/console": "*",
-                "symfony/form": "^4.0 || ^5.0 || ^6.0",
-                "symfony/messenger": "^4.2 || ^5.0 || ^6.0",
-                "symfony/security-guard": "*",
-                "symfony/serializer": "^4.0 || ^5.0 || ^6.0",
-                "symfony/validator": "*",
-                "twig/twig": "^2.10 || ^3.0",
-                "weirdan/codeception-psalm-module": "^0.13.1"
-            },
-            "suggest": {
-                "weirdan/doctrine-psalm-plugin": "If Doctrine is used, it is recommended install this plugin"
-            },
-            "type": "psalm-plugin",
-            "extra": {
-                "psalm": {
-                    "pluginClass": "Psalm\\SymfonyPsalmPlugin\\Plugin"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psalm\\SymfonyPsalmPlugin\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Farhad Safarov",
-                    "email": "farhad.safarov@gmail.com"
-                }
-            ],
-            "description": "Psalm Plugin for Symfony",
-            "support": {
-                "issues": "https://github.com/psalm/psalm-plugin-symfony/issues",
-                "source": "https://github.com/psalm/psalm-plugin-symfony/tree/v3.1.5"
-            },
-            "time": "2022-05-14T11:21:10+00:00"
         },
         {
             "name": "roave/security-advisories",
