@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class OpenApi extends JsonResponse
 {
+    protected $charset = 'UTF-8';
+
     public function __construct(
         mixed $data = null,
         int $status = self::HTTP_OK,

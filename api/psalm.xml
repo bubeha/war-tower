@@ -8,7 +8,7 @@
         cacheDirectory="./var/cache/.psalm"
 >
     <plugins>
-    <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/></plugins>
+    </plugins>
 
     <projectFiles>
         <directory name="bin"/>
