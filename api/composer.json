@@ -79,7 +79,9 @@
         ],
         "php-cs-fixer": "php-cs-fixer --config=./.php-cs-fixer.php --allow-risky=yes",
         "phplint": "phplint",
-        "psalm": "vendor/bin/psalm --config=psalm.xml"
+        "psalm": "vendor/bin/psalm --config=psalm.xml",
+        "test": "XDEBUG_MODE=coverage phpunit --colors=always",
+        "test-coverage": "XDEBUG_MODE=coverage phpunit --colors=always --coverage-html var/test/coverage"
     },
     "conflict": {
         "symfony/symfony": "*"
