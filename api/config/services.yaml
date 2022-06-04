@@ -14,11 +14,15 @@ services:
   # makes classes in src/ available to be used as services
   # this creates a service per class whose id is the fully-qualified class name
   App\:
-    resource: '../src/'
-    exclude:
-      - '../src/DependencyInjection/'
-      - '../src/Entity/'
-      - '../src/Kernel.php'
+    resource: '../src/App/*'
+    exclude: '../src/App/**/{Migrations,EventSubscriber}'
 
+  UI\:
+    resource: '../src/UI/*'
+    exclude: '../src/UI/**/{EventSubscriber}'
+
+  UI\Http\Rest\Controller\:
+    resource: '../src/UI/Http/Rest/Controller/*'
+    tags: [ 'controller.service_arguments' ]
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones

@@ -8,6 +8,7 @@ doctrine:
       collate: utf8_unicode_ci
     types:
       uuid: Ramsey\Uuid\Doctrine\UuidType
+      datetime_immutable: App\Domain\Type\DateTimeType
 
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'
@@ -17,8 +18,8 @@ doctrine:
       App:
         is_bundle: false
         type: attribute
-        dir: '%kernel.project_dir%/src/Entity'
-        prefix: 'App\Entity'
+        dir: '%kernel.project_dir%/src/App/Domain/Entity'
+        prefix: 'App\Domain\Entity'
         alias: App
 
 when@test:
