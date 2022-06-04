@@ -8,7 +8,7 @@ doctrine:
       collate: utf8_unicode_ci
     types:
       uuid: Ramsey\Uuid\Doctrine\UuidType
-      datetime_immutable: App\Domain\Type\DateTimeType
+      datetime_immutable: App\Infrastructure\Persistence\Doctrine\Types\DateTimeType
 
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'

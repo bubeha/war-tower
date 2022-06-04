@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Type;
+namespace App\Infrastructure\Persistence\Doctrine\Types;
 
 use App\Domain\Exception\DateTimeException;
 use App\Domain\ValueObject\DateTime;
