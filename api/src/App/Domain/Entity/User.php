@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Entity;
 
 use App\Domain\ValueObject\DateTime;
+use App\Domain\ValueObject\Experience;
 use App\Domain\ValueObject\Money;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
@@ -22,11 +23,11 @@ final class User
     #[Id, Column(type: 'uuid', unique: true), GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
 
-    #[Column(type: 'integer')]
-    private int $money;
+    #[Column(type: 'money')]
+    private Money $money;
 
-    #[Column(type: 'integer')]
-    private int $experience;
+    #[Column(type: 'experience')]
+    private Experience $experience;
 
     #[Column(type: 'datetime_immutable')]
     private ?DateTime $createdAt;
@@ -34,16 +35,16 @@ final class User
     #[Column(type: 'datetime_immutable')]
     private ?DateTime $updatedAt;
 
-    public function __construct(UuidInterface $id, Money $money, int $experience, ?DateTime $createdAt, ?DateTime $updatedAt)
+    public function __construct(UuidInterface $id, Money $money, Experience $experience, ?DateTime $createdAt, ?DateTime $updatedAt)
     {
         $this->id = $id;
-        $this->money = $money->getValue();
+        $this->money = $money;
         $this->experience = $experience;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
     }
 
-    public static function create(Money $money, int $experience = 0): self
+    public static function create(Money $money, Experience $experience): self
     {
         return new self(Uuid::uuid4(), $money, $experience, new DateTime('now'), new DateTime('now'));
     }
@@ -53,12 +54,12 @@ final class User
         return $this->id;
     }
 
-    public function getMoney(): int
+    public function getMoney(): Money
     {
         return $this->money;
     }
 
-    public function getExperience(): int
+    public function getExperience(): Experience
     {
         return $this->experience;
     }
