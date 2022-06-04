@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Response;
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class OpenApi extends JsonResponse

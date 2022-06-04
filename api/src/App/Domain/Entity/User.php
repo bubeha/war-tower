@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Domain\ValueObject\Money;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Entity;
@@ -20,18 +21,27 @@ final class User
     #[Id, Column(type: 'uuid', unique: true), GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
 
-    public function __construct(UuidInterface $id = null)
-    {
-        if (null === $id) {
-            $this->id = Uuid::uuid4();
-            return;
-        }
+    #[Id, Column(type: 'integer')]
+    private Money $money;
 
+    public function __construct(UuidInterface $id, Money $money)
+    {
         $this->id = $id;
+        $this->money = $money;
+    }
+
+    public static function create(Money $money, UuidInterface $id = null): self
+    {
+        return new self($id ?? Uuid::uuid4(), $money);
     }
 
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function getMoney(): Money
+    {
+        return $this->money;
     }
 }
