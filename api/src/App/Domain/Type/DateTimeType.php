@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Type;
 
-use App\Domain\ValueObject\DateTime;
 use App\Domain\Exception\DateTimeException;
+use App\Domain\ValueObject\DateTime;
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
