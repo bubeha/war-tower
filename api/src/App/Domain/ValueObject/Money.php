@@ -14,4 +14,9 @@ final class Money
     {
         return new self($value);
     }
+
+    public function getValue(): int
+    {
+        return (int)($this->value * 100);
+    }
 }

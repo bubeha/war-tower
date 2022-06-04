@@ -5,8 +5,17 @@
     "amphp/byte-stream": {
         "version": "v1.8.1"
     },
+    "beberlei/assert": {
+        "version": "v3.3.2"
+    },
     "brick/math": {
         "version": "0.9.3"
+    },
+    "broadway/broadway": {
+        "version": "2.4.0"
+    },
+    "broadway/uuid-generator": {
+        "version": "1.0.0"
     },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.5"
