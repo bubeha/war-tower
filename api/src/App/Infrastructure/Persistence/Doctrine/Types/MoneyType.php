@@ -8,8 +8,9 @@ use App\Domain\ValueObject\Money;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\IntegerType;
+use function is_numeric;
 
-class MoneyType extends IntegerType
+final class MoneyType extends IntegerType
 {
     private const TYPE = 'money';
 

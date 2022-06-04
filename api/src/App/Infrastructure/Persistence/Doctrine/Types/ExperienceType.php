@@ -8,6 +8,7 @@ use App\Domain\ValueObject\Experience;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\IntegerType;
+use function is_numeric;
 
 final class ExperienceType extends IntegerType
 {

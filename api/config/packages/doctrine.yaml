@@ -11,6 +11,7 @@ doctrine:
       datetime_immutable: App\Infrastructure\Persistence\Doctrine\Types\DateTimeType
       experience: App\Infrastructure\Persistence\Doctrine\Types\ExperienceType
       money: App\Infrastructure\Persistence\Doctrine\Types\MoneyType
+      slug: App\Infrastructure\Persistence\Doctrine\Types\SlugType
 
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'
