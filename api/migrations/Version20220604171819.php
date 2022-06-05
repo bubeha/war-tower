@@ -14,7 +14,7 @@ final class Version20220604171819 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'make resources tables';
+        return 'Make resources tables';
     }
 
     public function up(Schema $schema): void
