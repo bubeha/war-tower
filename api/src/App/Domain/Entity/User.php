@@ -13,12 +13,13 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use JsonSerializable;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 #[Entity(), Table(name: 'users')]
-final class User
+final class User implements JsonSerializable
 {
     #[Id, Column(type: 'uuid', unique: true), GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
@@ -72,5 +73,16 @@ final class User
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'money' => $this->getMoney()->getOriginal(),
+            'experience' => $this->getExperience()->getValue(),
+            'created_at' => $this->getCreatedAt()?->format('Y-m-d H:i:s'),
+            'updated_at' => $this->getUpdatedAt()?->format('Y-m-d H:i:s'),
+        ];
     }
 }

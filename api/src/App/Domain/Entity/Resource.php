@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Domain\Entity;
 
 use App\Domain\ValueObject\DateTime;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Entity;
@@ -71,10 +70,5 @@ final class Resource
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
-    }
-
-    public function getUsers(): ?Collection
-    {
-        return $this->users;
     }
 }
