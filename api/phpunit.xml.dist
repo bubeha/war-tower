@@ -21,6 +21,12 @@
     </php>
 
     <testsuites>
+        <testsuite name="unit">
+            <directory>src/App/Shared/**/</directory>
+            <directory>src/UI/Http/Rest/**/</directory>
+            <directory>src/UI/Http/Rest/**/</directory>
+        </testsuite>
+
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
         </testsuite>
