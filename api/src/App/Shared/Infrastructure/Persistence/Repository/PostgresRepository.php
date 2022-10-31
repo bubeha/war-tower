@@ -13,8 +13,11 @@ abstract class PostgresRepository
 {
     public function __construct(protected EntityManagerInterface $entityManager)
     {
-        $this->setEntityManager();
     }
 
-    abstract protected function setEntityManager(): void;
+    protected function store(object $entry): void
+    {
+        $this->entityManager->persist($entry);
+        $this->entityManager->flush();
+    }
 }

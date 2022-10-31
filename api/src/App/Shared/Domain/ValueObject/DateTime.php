@@ -9,9 +9,6 @@ use DateTimeImmutable;
 use Exception;
 use Throwable;
 
-/**
- * @psalm-immutable
- */
 final class DateTime extends DateTimeImmutable
 {
     public const FORMAT = 'Y-m-d\TH:i:s.uP';

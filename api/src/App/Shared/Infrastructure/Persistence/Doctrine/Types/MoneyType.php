@@ -8,6 +8,7 @@ use App\Shared\Domain\ValueObject\Money;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\IntegerType;
+
 use function is_numeric;
 
 final class MoneyType extends IntegerType
@@ -16,7 +17,7 @@ final class MoneyType extends IntegerType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if (!($value instanceof Money)) {
+        if (!$value instanceof Money) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Money::class]);
         }
 

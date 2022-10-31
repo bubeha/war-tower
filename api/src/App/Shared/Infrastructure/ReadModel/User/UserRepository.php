@@ -6,6 +6,7 @@ namespace App\Shared\Infrastructure\ReadModel\User;
 
 use App\Shared\Domain\Entity\User;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -13,10 +14,19 @@ use Doctrine\ORM\EntityRepository;
  */
 final class UserRepository extends PostgresRepository implements GetCurrentUser
 {
-    private EntityRepository $repository;
+    private readonly EntityRepository $repository;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        parent::__construct($entityManager);
+
+        $this->repository = $this->entityManager->getRepository(User::class);
+    }
 
     /**
      * @throws \Doctrine\ORM\NonUniqueResultException
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedReturnStatement
      */
     public function getCurrentUser(): null|User
     {
@@ -25,10 +35,5 @@ final class UserRepository extends PostgresRepository implements GetCurrentUser
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
-
-    protected function setEntityManager(): void
-    {
-        $this->repository = $this->entityManager->getRepository(User::class);
     }
 }

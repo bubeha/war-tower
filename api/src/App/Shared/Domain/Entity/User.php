@@ -25,8 +25,8 @@ final class User implements JsonSerializable
     private UuidInterface $id, #[Column(type: 'money')]
     private Money $money, #[Column(type: 'experience')]
     private Experience $experience, #[Column(type: 'datetime_immutable')]
-    private ?\App\Shared\Domain\ValueObject\DateTime $createdAt, #[Column(type: 'datetime_immutable')]
-    private ?\App\Shared\Domain\ValueObject\DateTime $updatedAt)
+    private ?DateTime $createdAt, #[Column(type: 'datetime_immutable')]
+    private ?DateTime $updatedAt)
     {
     }
 

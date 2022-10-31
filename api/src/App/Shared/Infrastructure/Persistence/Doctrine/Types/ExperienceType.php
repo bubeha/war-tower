@@ -8,6 +8,7 @@ use App\Shared\Domain\ValueObject\Experience;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\IntegerType;
+
 use function is_numeric;
 
 final class ExperienceType extends IntegerType
@@ -16,7 +17,7 @@ final class ExperienceType extends IntegerType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if (!($value instanceof Experience)) {
+        if (!$value instanceof Experience) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Experience::class]);
         }
 

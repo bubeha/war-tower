@@ -22,8 +22,8 @@ final class Resource
     private UuidInterface $id, #[Column(type: 'string', unique: true)]
     private string $slug, #[Column(type: 'string')]
     private string $name, #[Column(type: 'datetime_immutable')]
-    private ?\App\Shared\Domain\ValueObject\DateTime $createdAt, #[Column(type: 'datetime_immutable')]
-    private ?\App\Shared\Domain\ValueObject\DateTime $updatedAt)
+    private ?DateTime $createdAt, #[Column(type: 'datetime_immutable')]
+    private ?DateTime $updatedAt)
     {
     }
 
