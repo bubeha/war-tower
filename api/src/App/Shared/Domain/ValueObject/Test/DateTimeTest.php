@@ -34,9 +34,6 @@ final class DateTimeTest extends TestCase
         self::assertSame($now->format(DateTime::FORMAT), $now->toString());
     }
 
-    /**
-     * @group unit
-     */
     public function testBadDateTime(): void
     {
         $this->expectException(DateTimeException::class);

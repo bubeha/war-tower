@@ -15,9 +15,9 @@ final class Slug
         return $this->toString();
     }
 
-    public static function fromString(string $email): self
+    public static function fromString(string $string): self
     {
-        return new self($email);
+        return new self($string);
     }
 
     public function toString(): string
