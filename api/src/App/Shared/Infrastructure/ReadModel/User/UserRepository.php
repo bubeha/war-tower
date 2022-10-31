@@ -20,7 +20,6 @@ final class UserRepository extends PostgresRepository implements GetCurrentUser
      */
     public function getCurrentUser(): null|User
     {
-        /** @var User */
         return $this->repository->createQueryBuilder('u')
             ->setMaxResults(1)
             ->getQuery()
