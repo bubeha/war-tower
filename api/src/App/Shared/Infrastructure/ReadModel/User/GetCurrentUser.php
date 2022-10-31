@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\ReadModel\User;
+namespace App\Shared\Infrastructure\ReadModel\User;
 
-use App\Domain\Entity\User;
+use App\Shared\Domain\Entity\User;
 
 interface GetCurrentUser
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Entity;
+namespace App\Shared\Domain\Entity;
 
-use App\Domain\ValueObject\DateTime;
+use App\Shared\Domain\ValueObject\DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\CustomIdGenerator;
 use Doctrine\ORM\Mapping\Entity;
@@ -18,28 +18,13 @@ use Ramsey\Uuid\UuidInterface;
 #[Entity, Table(name: 'resources')]
 final class Resource
 {
-    #[Id, Column(type: 'uuid', unique: true), GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(class: UuidGenerator::class)]
-    private UuidInterface $id;
-
-    #[Column(type: 'string', unique: true)]
-    private string $slug;
-
-    #[Column(type: 'string')]
-    private string $name;
-
-    #[Column(type: 'datetime_immutable')]
-    private ?DateTime $createdAt;
-
-    #[Column(type: 'datetime_immutable')]
-    private ?DateTime $updatedAt;
-
-    public function __construct(UuidInterface $id, string $slug, string $name, ?DateTime $createdAt, ?DateTime $updatedAt)
+    public function __construct(#[Id, Column(type: 'uuid', unique: true), GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(class: UuidGenerator::class)]
+    private UuidInterface $id, #[Column(type: 'string', unique: true)]
+    private string $slug, #[Column(type: 'string')]
+    private string $name, #[Column(type: 'datetime_immutable')]
+    private ?\App\Shared\Domain\ValueObject\DateTime $createdAt, #[Column(type: 'datetime_immutable')]
+    private ?\App\Shared\Domain\ValueObject\DateTime $updatedAt)
     {
-        $this->id = $id;
-        $this->slug = $slug;
-        $this->name = $name;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
     }
 
     public static function create(string $slug, string $name, ?DateTime $createdAt, ?DateTime $updatedAte): self

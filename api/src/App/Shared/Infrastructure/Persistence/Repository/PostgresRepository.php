@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Repository;
+namespace App\Shared\Infrastructure\Persistence\Repository;
 
 use Doctrine\ORM\EntityManagerInterface;
 

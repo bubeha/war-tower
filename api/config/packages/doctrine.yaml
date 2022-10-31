@@ -8,10 +8,10 @@ doctrine:
       collate: utf8_unicode_ci
     types:
       uuid: Ramsey\Uuid\Doctrine\UuidType
-      datetime_immutable: App\Infrastructure\Persistence\Doctrine\Types\DateTimeType
-      experience: App\Infrastructure\Persistence\Doctrine\Types\ExperienceType
-      money: App\Infrastructure\Persistence\Doctrine\Types\MoneyType
-      slug: App\Infrastructure\Persistence\Doctrine\Types\SlugType
+      datetime_immutable: App\Shared\Infrastructure\Persistence\Doctrine\Types\DateTimeType
+      experience: App\Shared\Infrastructure\Persistence\Doctrine\Types\ExperienceType
+      money: App\Shared\Infrastructure\Persistence\Doctrine\Types\MoneyType
+      slug: App\Shared\Infrastructure\Persistence\Doctrine\Types\SlugType
 
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'
@@ -21,8 +21,8 @@ doctrine:
       App:
         is_bundle: false
         type: attribute
-        dir: '%kernel.project_dir%/src/App/Domain/Entity'
-        prefix: 'App\Domain\Entity'
+        dir: '%kernel.project_dir%/src/App/Shared/Domain/Entity'
+        prefix: 'App\Shared\Domain\Entity'
         alias: App
 
 when@test:

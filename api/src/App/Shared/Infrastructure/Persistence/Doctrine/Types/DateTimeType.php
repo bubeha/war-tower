@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Doctrine\Types;
+namespace App\Shared\Infrastructure\Persistence\Doctrine\Types;
 
-use App\Domain\Exception\DateTimeException;
-use App\Domain\ValueObject\DateTime;
+use App\Shared\Domain\Exception\DateTimeException;
+use App\Shared\Domain\ValueObject\DateTime;
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;

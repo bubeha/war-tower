@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Doctrine\Types;
+namespace App\Shared\Infrastructure\Persistence\Doctrine\Types;
 
-use App\Domain\ValueObject\Experience;
+use App\Shared\Domain\ValueObject\Money;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\IntegerType;
 use function is_numeric;
 
-final class ExperienceType extends IntegerType
+final class MoneyType extends IntegerType
 {
-    private const TYPE = 'experience';
+    private const TYPE = 'money';
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if (!($value instanceof Experience)) {
-            throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Experience::class]);
+        if (!($value instanceof Money)) {
+            throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Money::class]);
         }
 
-        return $value->getValue();
+        return $value->getConverted();
     }
 
     public function convertToPHPValue($value, $platform)
@@ -29,7 +29,7 @@ final class ExperienceType extends IntegerType
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');
         }
 
-        return Experience::create((int)$value);
+        return Money::fromConverted((int)$value);
     }
 
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool

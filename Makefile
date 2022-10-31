@@ -44,6 +44,9 @@ lint:
 cs-fix:
 	$(DOCKER_COMPOSE) run --rm --no-deps php-cli composer run php-cs-fixer fix
 
+rector:
+	$(DOCKER_COMPOSE) run --rm --no-deps php-cli composer run rector
+
 validate-db-schema:
 	$(DOCKER_COMPOSE) run --rm php-cli ./bin/console doctrine:schema:validate
 

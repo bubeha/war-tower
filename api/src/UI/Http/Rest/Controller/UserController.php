@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller;
 
-use App\Infrastructure\ReadModel\User\GetCurrentUser;
+use App\Shared\Infrastructure\ReadModel\User\GetCurrentUser;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use UI\Http\Rest\Response\OpenApi;

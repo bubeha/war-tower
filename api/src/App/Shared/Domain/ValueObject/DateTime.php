@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\ValueObject;
+namespace App\Shared\Domain\ValueObject;
 
-use App\Domain\Exception\DateTimeException;
+use App\Shared\Domain\Exception\DateTimeException;
 use DateTimeImmutable;
 use Exception;
 use Throwable;
@@ -17,7 +17,7 @@ final class DateTime extends DateTimeImmutable
     public const FORMAT = 'Y-m-d\TH:i:s.uP';
 
     /**
-     * @throws \App\Domain\Exception\DateTimeException
+     * @throws \App\Shared\Domain\Exception\DateTimeException
      */
     public static function now(): self
     {
@@ -25,7 +25,7 @@ final class DateTime extends DateTimeImmutable
     }
 
     /**
-     * @throws \App\Domain\Exception\DateTimeException
+     * @throws \App\Shared\Domain\Exception\DateTimeException
      */
     public static function fromString(string $dateTime): self
     {
@@ -33,7 +33,7 @@ final class DateTime extends DateTimeImmutable
     }
 
     /**
-     * @throws \App\Domain\Exception\DateTimeException
+     * @throws \App\Shared\Domain\Exception\DateTimeException
      */
     private static function create(string $value = ''): self
     {
