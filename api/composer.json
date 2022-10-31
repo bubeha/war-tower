@@ -26,6 +26,7 @@
         "friendsofphp/php-cs-fixer": "^3.8",
         "overtrue/phplint": "^5.0",
         "phpunit/phpunit": "^9.5",
+        "rector/rector": "^0.14.6",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
@@ -81,6 +82,7 @@
         ],
         "php-cs-fixer": "php-cs-fixer --config=./.php-cs-fixer.php --allow-risky=yes",
         "phplint": "phplint",
+        "rector": "rector",
         "psalm": "vendor/bin/psalm --config=psalm.xml",
         "test": "XDEBUG_MODE=coverage phpunit --colors=always",
         "test-coverage": "XDEBUG_MODE=coverage phpunit --colors=always --coverage-html var/test/coverage"
