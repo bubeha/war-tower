@@ -29,6 +29,11 @@ final class DateTime extends DateTimeImmutable
         return self::create($dateTime);
     }
 
+    public function toString(): string
+    {
+        return $this->format(self::FORMAT);
+    }
+
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */

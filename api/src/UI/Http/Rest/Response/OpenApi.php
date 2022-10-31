@@ -23,4 +23,9 @@ final class OpenApi extends JsonResponse
     {
         return new self($payload, $status, $header);
     }
+
+    public static function empty(int $status): self
+    {
+        return new self(null, $status);
+    }
 }
