@@ -16,7 +16,7 @@ final class ProductType
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public function create(Uuid $id, string $name): self
+    public static function create(Uuid $id, string $name): self
     {
         return new self(
             $id,
