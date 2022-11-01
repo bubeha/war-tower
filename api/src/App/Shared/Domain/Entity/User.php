@@ -5,49 +5,35 @@ declare(strict_types=1);
 namespace App\Shared\Domain\Entity;
 
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Experience;
-use App\Shared\Domain\ValueObject\Money;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\CustomIdGenerator;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use App\Shared\Domain\ValueObject\Uuid;
 use JsonSerializable;
-use Ramsey\Uuid\Doctrine\UuidGenerator;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
-#[Entity(), Table(name: 'users')]
 final class User implements JsonSerializable
 {
-    public function __construct(#[Id, Column(type: 'uuid', unique: true), GeneratedValue(strategy: 'CUSTOM'), CustomIdGenerator(class: UuidGenerator::class)]
-    private UuidInterface $id, #[Column(type: 'money')]
-    private Money $money, #[Column(type: 'experience')]
-    private Experience $experience, #[Column(type: 'datetime_immutable')]
-    private ?DateTime $createdAt, #[Column(type: 'datetime_immutable')]
-    private ?DateTime $updatedAt)
+    public function __construct(private readonly Uuid $id, private readonly ?DateTime $createdAt, private readonly ?DateTime $updatedAt = null)
     {
     }
 
-    public static function create(Money $money, Experience $experience): self
+    /**
+     * @throws \App\Shared\Domain\Exception\DateTimeException
+     */
+    public static function create(Uuid $id): self
     {
-        return new self(Uuid::uuid4(), $money, $experience, new DateTime('now'), new DateTime('now'));
+        return new self($id, DateTime::now());
     }
 
-    public function getId(): UuidInterface
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'created_at' => $this->getCreatedAt()?->format('Y-m-d H:i:s'),
+            'updated_at' => $this->getUpdatedAt()?->format('Y-m-d H:i:s'),
+        ];
+    }
+
+    public function getId(): Uuid
     {
         return $this->id;
-    }
-
-    public function getMoney(): Money
-    {
-        return $this->money;
-    }
-
-    public function getExperience(): Experience
-    {
-        return $this->experience;
     }
 
     public function getCreatedAt(): ?DateTime
@@ -58,16 +44,5 @@ final class User implements JsonSerializable
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->getId(),
-            'money' => $this->getMoney()->getOriginal(),
-            'experience' => $this->getExperience()->getValue(),
-            'created_at' => $this->getCreatedAt()?->format('Y-m-d H:i:s'),
-            'updated_at' => $this->getUpdatedAt()?->format('Y-m-d H:i:s'),
-        ];
     }
 }

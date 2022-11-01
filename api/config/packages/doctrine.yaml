@@ -7,7 +7,7 @@ doctrine:
       charset: utf8
       collate: utf8_unicode_ci
     types:
-      uuid: Ramsey\Uuid\Doctrine\UuidType
+      uuid: App\Shared\Infrastructure\Persistence\Doctrine\Types\UuidType
       datetime_immutable: App\Shared\Infrastructure\Persistence\Doctrine\Types\DateTimeType
       experience: App\Shared\Infrastructure\Persistence\Doctrine\Types\ExperienceType
       money: App\Shared\Infrastructure\Persistence\Doctrine\Types\MoneyType
@@ -18,12 +18,12 @@ doctrine:
     naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
     auto_mapping: true
     mappings:
-      App:
+      Shared:
         is_bundle: false
-        type: attribute
-        dir: '%kernel.project_dir%/src/App/Shared/Domain/Entity'
+        type: xml
+        dir: '%kernel.project_dir%/src/App/Shared/Infrastructure/Persistence/Doctrine/Mapping'
         prefix: 'App\Shared\Domain\Entity'
-        alias: App
+        alias: Shared
 
 when@test:
   doctrine:
