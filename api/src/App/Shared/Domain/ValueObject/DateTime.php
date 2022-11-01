@@ -11,7 +11,7 @@ use Throwable;
 
 final class DateTime extends DateTimeImmutable
 {
-    public const FORMAT = 'Y-m-d\TH:i:s.uP';
+    public const FORMAT = 'Y-m-d H:i:s';
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
