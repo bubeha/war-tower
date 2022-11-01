@@ -6,9 +6,8 @@ namespace App\Shared\Domain\Entity;
 
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
-use JsonSerializable;
 
-final class User implements JsonSerializable
+final class User
 {
     public function __construct(private readonly Uuid $id, private readonly ?DateTime $createdAt, private readonly ?DateTime $updatedAt = null)
     {
@@ -17,18 +16,9 @@ final class User implements JsonSerializable
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id): self
+    public static function create(Uuid $id, DateTime $createdAt = null): self
     {
-        return new self($id, DateTime::now());
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'id' => $this->getId(),
-            'created_at' => $this->getCreatedAt()?->format('Y-m-d H:i:s'),
-            'updated_at' => $this->getUpdatedAt()?->format('Y-m-d H:i:s'),
-        ];
+        return new self($id, $createdAt ?? DateTime::now());
     }
 
     public function getId(): Uuid
