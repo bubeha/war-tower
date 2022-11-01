@@ -24,6 +24,7 @@
     },
     "require-dev": {
         "dg/bypass-finals": "^1.4",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "^3.8",
         "mockery/mockery": "^1.5",
         "overtrue/phplint": "^5.0",
