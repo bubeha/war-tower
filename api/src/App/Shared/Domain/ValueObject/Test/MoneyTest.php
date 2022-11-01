@@ -21,7 +21,7 @@ final class MoneyTest extends TestCase
     public function testConversion(): void
     {
         $expected = random_int(10, 999) / 100;
-        self::assertSame(Money::fromOriginal($expected)->getOriginal(), (float)$expected);
+        self::assertSame(Money::fromOriginal($expected)->getOriginal(), $expected);
 
         $expected = random_int(10, 999) / 100;
         self::assertSame(Money::fromOriginal($expected)->getConverted(), (int)($expected * 100));
