@@ -8,7 +8,7 @@
         cacheDirectory="./var/cache/.psalm"
 >
     <plugins>
-    <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/></plugins>
+    <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/><pluginClass class="Psalm\MockeryPlugin\Plugin"/></plugins>
 
     <projectFiles>
         <directory name="bin"/>
