@@ -10,6 +10,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\DateTimeImmutableType;
+use Doctrine\DBAL\Types\Types;
 
 final class DateTimeType extends DateTimeImmutableType
 {
@@ -18,7 +19,7 @@ final class DateTimeType extends DateTimeImmutableType
      *
      * @throws \Doctrine\DBAL\Types\ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): null|string
     {
         if (null === $value) {
             return null;
@@ -32,7 +33,7 @@ final class DateTimeType extends DateTimeImmutableType
             return $value->format($platform->getDateTimeFormatString());
         }
 
-        throw ConversionException::conversionFailedInvalidType($value, $this->getName(), ['null', DateTime::class]);
+        throw ConversionException::conversionFailedInvalidType($value, Types::DATETIME_IMMUTABLE, ['null', DateTime::class]);
     }
 
     /**
@@ -40,7 +41,7 @@ final class DateTimeType extends DateTimeImmutableType
      *
      * @throws \Doctrine\DBAL\Types\ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): null|DateTime
     {
         if (null === $value || $value instanceof DateTime) {
             return $value;
@@ -49,7 +50,7 @@ final class DateTimeType extends DateTimeImmutableType
         try {
             $dateTime = DateTime::fromString((string)$value);
         } catch (DateTimeException) {
-            throw ConversionException::conversionFailedFormat($value, $this->getName(), $platform->getDateTimeFormatString());
+            throw ConversionException::conversionFailedFormat($value, Types::DATETIME_IMMUTABLE, $platform->getDateTimeFormatString());
         }
 
         return $dateTime;

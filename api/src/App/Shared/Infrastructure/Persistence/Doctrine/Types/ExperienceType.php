@@ -15,7 +15,7 @@ final class ExperienceType extends IntegerType
 {
     private const TYPE = 'experience';
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): int
     {
         if (!$value instanceof Experience) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Experience::class]);
@@ -24,7 +24,7 @@ final class ExperienceType extends IntegerType
         return $value->getValue();
     }
 
-    public function convertToPHPValue($value, $platform)
+    public function convertToPHPValue($value, $platform): Experience
     {
         if (!is_numeric($value)) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');

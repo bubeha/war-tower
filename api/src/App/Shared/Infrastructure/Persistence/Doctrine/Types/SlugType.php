@@ -13,7 +13,7 @@ final class SlugType extends StringType
 {
     private const TYPE = 'slug';
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if (!$value instanceof Slug) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Slug::class]);
@@ -22,7 +22,7 @@ final class SlugType extends StringType
         return $value->toString();
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): Slug
     {
         if ($value instanceof Slug) {
             return $value;

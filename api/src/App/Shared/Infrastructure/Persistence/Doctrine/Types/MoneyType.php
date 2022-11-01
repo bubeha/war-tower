@@ -15,7 +15,7 @@ final class MoneyType extends IntegerType
 {
     private const TYPE = 'money';
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): int
     {
         if (!$value instanceof Money) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Money::class]);
@@ -24,7 +24,7 @@ final class MoneyType extends IntegerType
         return $value->getConverted();
     }
 
-    public function convertToPHPValue($value, $platform)
+    public function convertToPHPValue($value, $platform): Money
     {
         if (!is_numeric($value)) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');
