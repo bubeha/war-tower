@@ -9,6 +9,9 @@ use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 final class UserTest extends TestCase
 {
     /**

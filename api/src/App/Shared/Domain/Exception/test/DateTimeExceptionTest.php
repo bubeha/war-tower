@@ -8,7 +8,10 @@ use App\Shared\Domain\Exception\DateTimeException;
 use App\Shared\Domain\ValueObject\DateTime;
 use PHPUnit\Framework\TestCase;
 
-final class TestDateTimeException extends TestCase
+/**
+ * @internal
+ */
+final class DateTimeExceptionTest extends TestCase
 {
     public function testException(): void
     {
