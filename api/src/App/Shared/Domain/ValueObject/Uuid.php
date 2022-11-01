@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Shared\Domain\ValueObject;
 
 use InvalidArgumentException;
+use JsonSerializable;
 use Symfony\Component\Uid\UuidV4;
 
-final class Uuid
+final class Uuid implements JsonSerializable
 {
     public function __construct(private readonly string $value)
     {
