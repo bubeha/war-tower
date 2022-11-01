@@ -37,7 +37,7 @@ final class DateTime extends DateTimeImmutable
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    private static function create(string $value = ''): self
+    public static function create(string $value = ''): self
     {
         try {
             return new self($value);
