@@ -9,9 +9,6 @@ use App\Shared\Domain\ValueObject\Uuid;
 
 final class Product
 {
-    /** @var array<\App\Shared\Domain\Entity\Category> */
-    private array $categories = [];
-
     public function __construct(private readonly Uuid $id, private string $name, private readonly DateTime $createdAt, private ?DateTime $updatedAt = null)
     {
     }
@@ -19,12 +16,12 @@ final class Product
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, string $name): self
+    public static function create(Uuid $id, string $name, ?DateTime $createdAt = null): self
     {
         return new self(
             $id,
             $name,
-            DateTime::now()
+            $createdAt ?? DateTime::now()
         );
     }
 
@@ -55,13 +52,5 @@ final class Product
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * @return array<\App\Shared\Domain\Entity\Category>
-     */
-    public function getCategories(): array
-    {
-        return $this->categories;
     }
 }

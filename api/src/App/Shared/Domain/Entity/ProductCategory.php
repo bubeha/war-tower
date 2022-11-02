@@ -16,9 +16,9 @@ final class ProductCategory
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, Product $product, Category $category): self
+    public static function create(Uuid $id, Product $product, Category $category, ?DateTime $createdAt = null): self
     {
-        return new self($id, $product, $category, DateTime::now());
+        return new self($id, $product, $category, $createdAt ?? DateTime::now());
     }
 
     public function getId(): Uuid

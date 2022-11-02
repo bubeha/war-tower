@@ -16,12 +16,12 @@ final class Category
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, string $name): self
+    public static function create(Uuid $id, string $name, ?DateTime $createdAt = null): self
     {
         return new self(
             $id,
             $name,
-            DateTime::now()
+            $createdAt ?? DateTime::now()
         );
     }
 
