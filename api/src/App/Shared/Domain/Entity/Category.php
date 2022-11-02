@@ -9,9 +9,6 @@ use App\Shared\Domain\ValueObject\Uuid;
 
 final class Category
 {
-    /** @var array<\App\Shared\Domain\Entity\Product> */
-    private array $products = [];
-
     public function __construct(private readonly Uuid $id, private string $name, private readonly DateTime $createdAt, private ?DateTime $updatedAt = null)
     {
     }
@@ -55,13 +52,5 @@ final class Category
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * @return array<\App\Shared\Domain\Entity\Category>
-     */
-    public function getProducts(): array
-    {
-        return $this->products;
     }
 }
