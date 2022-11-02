@@ -9,18 +9,24 @@ use App\Shared\Domain\Entity\Product;
 use App\Shared\Domain\Entity\ProductCategory;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
+use DG\BypassFinals;
 use PHPUnit\Framework\TestCase;
 
 class ProductCategoryTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        BypassFinals::enable();
+    }
+
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      * @throws \Exception
      */
     public function testProductCategoryTest(): void
     {
-        $product = Product::create(Uuid::generate(), $this->generateString());
-        $category = Category::create(Uuid::generate(), $this->generateString());
+        $product = \Mockery::mock(Product::class);
+        $category = \Mockery::mock(Category::class);
 
         $id = Uuid::generate();
         $date = DateTime::now();
