@@ -7,16 +7,8 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <many-to-one field="type" target-entity="App\Shared\Domain\Entity\ProductType" inversed-by="products">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </many-to-one>
-        <field name="name" column="name" type="string" />
+        <field name="name" column="name" type="string" unique="true"/>
         <field name="createdAt" type="datetime_immutable" column="created_at"/>
         <field name="updatedAt" type="datetime_immutable" column="updated_at" nullable="true"/>
-        <unique-constraints>
-            <unique-constraint columns="type_id,name" name="products_type_id_name_key"/>
-        </unique-constraints>
     </entity>
 </doctrine-mapping>

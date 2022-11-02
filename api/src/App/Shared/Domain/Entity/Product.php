@@ -9,19 +9,18 @@ use App\Shared\Domain\ValueObject\Uuid;
 
 final class Product
 {
-    public function __construct(private readonly Uuid $id, private string $name, private ProductType $type, private readonly DateTime $createdAt, private ?DateTime $updatedAt = null)
+    public function __construct(private readonly Uuid $id, private string $name, private readonly DateTime $createdAt, private ?DateTime $updatedAt = null)
     {
     }
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, string $name, ProductType $type): self
+    public static function create(Uuid $id, string $name): self
     {
         return new self(
             $id,
             $name,
-            $type,
             DateTime::now()
         );
     }
@@ -35,15 +34,6 @@ final class Product
         $this->updatedAt = DateTime::now();
     }
 
-    /**
-     * @throws \App\Shared\Domain\Exception\DateTimeException
-     */
-    public function setType(ProductType $type): void
-    {
-        $this->type = $type;
-        $this->updatedAt = DateTime::now();
-    }
-
     public function getId(): Uuid
     {
         return $this->id;
@@ -52,11 +42,6 @@ final class Product
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getType(): ProductType
-    {
-        return $this->type;
     }
 
     public function getCreatedAt(): DateTime

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
-use App\Shared\Domain\Entity\ProductType;
+use App\Shared\Domain\Entity\Category;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-final class ProductTypeFixture extends Fixture
+final class CategoryFixture extends Fixture
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
@@ -24,16 +24,17 @@ final class ProductTypeFixture extends Fixture
     }
 
     /**
-     * @return array<ProductType>
+     * @return array<Category>
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
     private function getData(): array
     {
         return [
-            ProductType::create(Uuid::generate(), 'Speed'),
-            ProductType::create(Uuid::generate(), 'Light'),
-            ProductType::create(Uuid::generate(), 'Medium'),
-            ProductType::create(Uuid::generate(), 'Heavy'),
+            Category::create(Uuid::generate(), 'Speed'),
+            Category::create(Uuid::generate(), 'Light'),
+            Category::create(Uuid::generate(), 'Medium'),
+            Category::create(Uuid::generate(), 'Heavy'),
+            Category::create(Uuid::generate(), 'Raw'),
         ];
     }
 }
