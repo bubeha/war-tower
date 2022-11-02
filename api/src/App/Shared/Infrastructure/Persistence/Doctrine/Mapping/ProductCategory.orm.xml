@@ -1,0 +1,22 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+          http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Shared\Domain\Entity\ProductCategory" table="products_categories">
+        <id name="id" type="uuid" column="id">
+            <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
+        </id>
+        <many-to-one field="product" target-entity="App\Shared\Domain\Entity\Product">
+            <join-column nullable="false"/>
+        </many-to-one>
+        <many-to-one field="category" target-entity="App\Shared\Domain\Entity\Category">
+            <join-column nullable="false"/>
+        </many-to-one>
+
+        <unique-constraints>
+            <unique-constraint name="products_categories_product_id_category_id_key" columns="product_id,category_id" />
+        </unique-constraints>
+        <field name="createdAt" type="datetime_immutable" column="created_at"/>
+    </entity>
+</doctrine-mapping>
