@@ -4,26 +4,31 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller\Product;
 
-use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\Repository\Product\ProductRepository;
-use App\Shared\Infrastructure\Persistence\ReadModel\Product\ProductView;
+use App\Shared\Infrastructure\Serializer\ProductNormalizer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Serializer;
 use UI\Http\Rest\Response\OpenApi;
-
-use function array_map;
 
 final class AllProductsAction
 {
+    private readonly Serializer $serializer;
+
     public function __construct(private readonly ProductRepository $repository)
     {
+        $this->serializer = new Serializer([new ProductNormalizer()]);
     }
 
+    /**
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     */
     #[Route(path: '/products', methods: ['GET', 'HEAD'])]
     public function __invoke(): OpenApi
     {
-        $result = $this->repository->all();
-
-        return OpenApi::fromPayload(array_map(static fn (Product $product) => ProductView::create($product->getId(), $product->getDetail(), $product->getCategory()), $result), Response::HTTP_OK);
+        return OpenApi::fromPayload(
+            $this->serializer->normalize($this->repository->all()),
+            Response::HTTP_OK
+        );
     }
 }

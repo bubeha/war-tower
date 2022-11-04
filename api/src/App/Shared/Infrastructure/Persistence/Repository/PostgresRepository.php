@@ -40,6 +40,7 @@ abstract class PostgresRepository
         ;
 
         if (null === $entry) {
+            // todo replace
             throw new LogicException();
         }
 

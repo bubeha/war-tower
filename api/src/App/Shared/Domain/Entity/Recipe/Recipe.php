@@ -64,4 +64,9 @@ class Recipe
     {
         return $this->createdAt;
     }
+
+    public function addItem(Item $item): void
+    {
+        $this->items->add($item);
+    }
 }

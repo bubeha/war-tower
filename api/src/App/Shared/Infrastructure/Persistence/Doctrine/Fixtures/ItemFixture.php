@@ -6,8 +6,8 @@ namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
 use App\Shared\Domain\Entity\Recipe\Item;
 use App\Shared\Domain\Entity\Recipe\Recipe;
+use App\Shared\Domain\Repository\Product\ProductRepository;
 use App\Shared\Domain\ValueObject\Id\Uuid;
-use App\Shared\Infrastructure\Persistence\ReadModel\ProductCategory\ProductCategoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -17,7 +17,7 @@ use Doctrine\Persistence\ObjectManager;
  */
 final class ItemFixture extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private readonly ProductCategoryRepository $repository)
+    public function __construct(private readonly ProductRepository $repository)
     {
     }
 
@@ -27,12 +27,11 @@ final class ItemFixture extends Fixture implements DependentFixtureInterface
     }
 
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
     public function load(ObjectManager $manager): void
     {
-        $product = $this->repository->getProduct();
+        $product = $this->repository->getProductForFixture('Weapon', 'Raw');
 
         $recipes = $manager->getRepository(Recipe::class)
             ->findAll()
