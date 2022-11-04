@@ -7,7 +7,7 @@ namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 use App\Shared\Domain\Entity\Product\Category;
 use App\Shared\Domain\Entity\Product\Detail;
 use App\Shared\Domain\Entity\Product\Product;
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

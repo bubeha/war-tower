@@ -7,7 +7,7 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <one-to-one field="product" target-entity="App\Shared\Domain\Entity\Product\Product">
+        <one-to-one field="product" target-entity="App\Shared\Domain\Entity\Product\Product" orphan-removal="true" fetch="EXTRA_LAZY">
             <join-column name="product_id" referenced-column-name="id" unique="true"/>
         </one-to-one>
         <one-to-many field="items" target-entity="App\Shared\Domain\Entity\Recipe\Item" mapped-by="recipe"/>

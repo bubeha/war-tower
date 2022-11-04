@@ -6,14 +6,21 @@ namespace App\Shared\Domain\Entity\Recipe;
 
 use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 
 /**
  * @final
  */
 class Item
 {
-    public function __construct(private Uuid $id, private Recipe $recipe, private Product $product, private int $quantity, private readonly DateTime $createdAt)
+    public function __construct(
+        /** @noRector ReadOnlyPropertyRector */
+        private Uuid $id,
+        private Recipe $recipe,
+        private Product $product,
+        private int $quantity,
+        private readonly DateTime $createdAt
+    )
     {
     }
 

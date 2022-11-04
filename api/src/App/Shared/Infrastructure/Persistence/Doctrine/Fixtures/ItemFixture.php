@@ -6,8 +6,8 @@ namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
 use App\Shared\Domain\Entity\Recipe\Item;
 use App\Shared\Domain\Entity\Recipe\Recipe;
-use App\Shared\Domain\ValueObject\Uuid;
-use App\Shared\Infrastructure\ReadModel\ProductCategory\ProductCategoryRepository;
+use App\Shared\Domain\ValueObject\Id\Uuid;
+use App\Shared\Infrastructure\Persistence\ReadModel\ProductCategory\ProductCategoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace App\Shared\Domain\Entity\Product;
 
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 
 /**
  * @final
  */
 class Detail
 {
-    public function __construct(private Uuid $id, private string $name, private readonly DateTime $createdAt)
-    {
+    public function __construct(
+        /** @noRector ReadOnlyPropertyRector */
+        private Uuid $id,
+        private string $name,
+        private readonly DateTime $createdAt
+    ) {
     }
 
     /**

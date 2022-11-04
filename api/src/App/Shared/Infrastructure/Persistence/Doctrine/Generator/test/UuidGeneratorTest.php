@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Generator\test;
 
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Entity;

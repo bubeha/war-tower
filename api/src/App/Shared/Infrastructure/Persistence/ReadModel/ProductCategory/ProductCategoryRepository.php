@@ -2,29 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\ReadModel\ProductCategory;
+namespace App\Shared\Infrastructure\Persistence\ReadModel\ProductCategory;
 
 use App\Shared\Domain\Entity\Product\Category;
 use App\Shared\Domain\Entity\Product\Detail;
 use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 use Doctrine\ORM\AbstractQuery;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use LogicException;
 
 final class ProductCategoryRepository extends PostgresRepository
 {
-    private readonly EntityRepository $repository;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        parent::__construct($entityManager);
-
-        $this->repository = $this->entityManager->getRepository(Product::class);
-    }
-
     /**
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @psalm-param AbstractQuery::HYDRATE_* $hydration
@@ -50,5 +39,10 @@ final class ProductCategoryRepository extends PostgresRepository
         }
 
         return $model;
+    }
+
+    protected function getEntityClass(): string
+    {
+        return Product::class;
     }
 }

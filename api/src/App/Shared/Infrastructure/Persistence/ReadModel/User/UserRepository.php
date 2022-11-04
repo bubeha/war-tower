@@ -2,20 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\ReadModel\User;
+namespace App\Shared\Infrastructure\Persistence\ReadModel\User;
 
 use App\Shared\Domain\Entity\User;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 
 /**
  * @template-extends PostgresRepository<User>
  */
 final class UserRepository extends PostgresRepository implements GetCurrentUser
 {
-    private readonly EntityRepository $repository;
-
     public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct($entityManager);
@@ -35,5 +32,10 @@ final class UserRepository extends PostgresRepository implements GetCurrentUser
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }
+
+    protected function getEntityClass(): string
+    {
+        return User::class;
     }
 }

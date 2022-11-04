@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Entity\test;
 
 use App\Shared\Domain\Entity\Product\Detail;
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 use Exception;
 
 use function random_bytes;

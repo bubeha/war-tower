@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Types\test;
 
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Infrastructure\Persistence\Doctrine\Types\UuidType;
 use DG\BypassFinals;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;

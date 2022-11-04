@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Entity\Recipe;
 
 use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Uuid;
+use App\Shared\Domain\ValueObject\Id\Uuid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -18,10 +18,14 @@ class Recipe
     /**
      * @var Collection<int,\App\Shared\Domain\Entity\Recipe\Item>
      */
-    private Collection $items;
+    private readonly Collection $items;
 
-    public function __construct(private Uuid $id, private Product $product, private readonly DateTime $createdAt)
-    {
+    public function __construct(
+        /** @noRector ReadOnlyPropertyRector */
+        private Uuid $id,
+        private Product $product,
+        private readonly DateTime $createdAt
+    ) {
         $this->items = new ArrayCollection();
     }
 
