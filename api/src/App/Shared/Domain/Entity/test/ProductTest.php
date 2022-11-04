@@ -7,12 +7,19 @@ namespace App\Shared\Domain\Entity\test;
 use App\Shared\Domain\Entity\Product;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
+use Exception;
 
-class ProductTest extends \PHPUnit\Framework\TestCase
+use function random_bytes;
+use function random_int;
+
+/**
+ * @internal
+ */
+final class ProductTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testProductCreate(): void
     {
@@ -30,7 +37,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testModifyProduct(): void
     {
@@ -46,8 +53,7 @@ class ProductTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     private function generateString(): string
     {

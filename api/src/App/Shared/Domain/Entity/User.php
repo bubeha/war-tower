@@ -7,7 +7,10 @@ namespace App\Shared\Domain\Entity;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 
-final class User
+/**
+ * @final
+ */
+class User
 {
     public function __construct(private readonly Uuid $id, private readonly ?DateTime $createdAt, private readonly ?DateTime $updatedAt = null)
     {

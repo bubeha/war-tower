@@ -7,13 +7,20 @@ namespace App\Shared\Domain\Entity\test;
 use App\Shared\Domain\Entity\Category;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
-class CategoryTest extends TestCase
+use function random_bytes;
+use function random_int;
+
+/**
+ * @internal
+ */
+final class CategoryTest extends TestCase
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCategoryCreate(): void
     {
@@ -31,7 +38,7 @@ class CategoryTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testModifyCategory(): void
     {
@@ -47,8 +54,7 @@ class CategoryTest extends TestCase
     }
 
     /**
-     * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     private function generateString(): string
     {

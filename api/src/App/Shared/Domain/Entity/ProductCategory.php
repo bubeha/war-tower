@@ -7,9 +7,12 @@ namespace App\Shared\Domain\Entity;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 
-final class ProductCategory
+/**
+ * @final
+ */
+class ProductCategory
 {
-    public function __construct(private readonly Uuid $id, private readonly Product $product, private readonly Category $category, private readonly DateTime $createdAt)
+    public function __construct(private Uuid $id, private readonly Product $product, private readonly Category $category, private readonly DateTime $createdAt)
     {
     }
 

@@ -10,9 +10,14 @@ use App\Shared\Domain\Entity\ProductCategory;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 use DG\BypassFinals;
+use Exception;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
-class ProductCategoryTest extends TestCase
+/**
+ * @internal
+ */
+final class ProductCategoryTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -21,12 +26,12 @@ class ProductCategoryTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testProductCategoryTest(): void
     {
-        $product = \Mockery::mock(Product::class);
-        $category = \Mockery::mock(Category::class);
+        $product = Mockery::mock(Product::class);
+        $category = Mockery::mock(Category::class);
 
         $id = Uuid::generate();
         $date = DateTime::now();
@@ -36,14 +41,5 @@ class ProductCategoryTest extends TestCase
         self::assertSame($product, $productCategory->getProduct());
         self::assertSame($category, $productCategory->getCategory());
         self::assertSame($date, $productCategory->getCreatedAt());
-    }
-
-    /**
-     * @return string
-     * @throws \Exception
-     */
-    private function generateString(): string
-    {
-        return random_bytes(random_int(1, 255));
     }
 }
