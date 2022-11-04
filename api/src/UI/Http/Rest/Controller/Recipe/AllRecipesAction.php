@@ -13,7 +13,7 @@ use UI\Http\Rest\Response\OpenApi;
 
 use function array_map;
 
-final class GetAllAction
+final class AllRecipesAction
 {
     public function __construct(private readonly RecipeRepository $repository)
     {
