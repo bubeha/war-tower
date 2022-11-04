@@ -7,10 +7,10 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <one-to-one field="product" target-entity="App\Shared\Domain\Entity\ProductCategory">
+        <one-to-one field="product" target-entity="App\Shared\Domain\Entity\Product\Product">
             <join-column name="product_id" referenced-column-name="id" unique="true"/>
         </one-to-one>
-        <one-to-many field="products" target-entity="App\Shared\Domain\Entity\RecipeProduct" mapped-by="recipe"/>
+        <one-to-many field="items" target-entity="App\Shared\Domain\Entity\Recipe\Item" mapped-by="recipe"/>
         <field name="createdAt" type="datetime_immutable" column="created_at"/>
     </entity>
 </doctrine-mapping>

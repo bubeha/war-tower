@@ -2,24 +2,25 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\Entity;
+namespace App\Shared\Domain\Entity\Recipe;
 
+use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 
 /**
  * @final
  */
-class RecipeProduct
+class Item
 {
-    public function __construct(private Uuid $id, private Recipe $recipe, private ProductCategory $product, private int $quantity, private readonly DateTime $createdAt)
+    public function __construct(private Uuid $id, private Recipe $recipe, private Product $product, private int $quantity, private readonly DateTime $createdAt)
     {
     }
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, Recipe $recipe, ProductCategory $product, int $quantity, ?DateTime $createdAt = null): self
+    public static function create(Uuid $id, Recipe $recipe, Product $product, int $quantity, ?DateTime $createdAt = null): self
     {
         return new self($id, $recipe, $product, $quantity, $createdAt ?? DateTime::now());
     }
@@ -29,7 +30,7 @@ class RecipeProduct
         $this->recipe = $recipe;
     }
 
-    public function setProduct(ProductCategory $product): void
+    public function setProduct(Product $product): void
     {
         $this->product = $product;
     }
@@ -49,7 +50,7 @@ class RecipeProduct
         return $this->recipe;
     }
 
-    public function getProduct(): ProductCategory
+    public function getProduct(): Product
     {
         return $this->product;
     }

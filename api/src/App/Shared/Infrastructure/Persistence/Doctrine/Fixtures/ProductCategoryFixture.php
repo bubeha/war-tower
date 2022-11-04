@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
-use App\Shared\Domain\Entity\Category;
-use App\Shared\Domain\Entity\Product;
-use App\Shared\Domain\Entity\ProductCategory;
+use App\Shared\Domain\Entity\Product\Category;
+use App\Shared\Domain\Entity\Product\Detail;
+use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\ValueObject\Uuid;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -27,12 +27,12 @@ final class ProductCategoryFixture extends Fixture implements DependentFixtureIn
      */
     public function load(ObjectManager $manager): void
     {
-        $products = $manager->getRepository(Product::class)->findAll();
+        $products = $manager->getRepository(Detail::class)->findAll();
         $categories = $manager->getRepository(Category::class)->findAll();
 
         foreach ($products as $product) {
             foreach ($categories as $category) {
-                $entry = ProductCategory::create(Uuid::generate(), $product, $category);
+                $entry = Product::create(Uuid::generate(), $product, $category);
                 $manager->persist($entry);
             }
         }

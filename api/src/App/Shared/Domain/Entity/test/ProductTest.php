@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Entity\test;
 
-use App\Shared\Domain\Entity\Product;
+use App\Shared\Domain\Entity\Product\Detail;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 use Exception;
@@ -27,7 +27,7 @@ final class ProductTest extends \PHPUnit\Framework\TestCase
         $date = DateTime::now();
         $name = $this->generateString();
 
-        $product = Product::create($id, $name, $date);
+        $product = Detail::create($id, $name, $date);
 
         self::assertSame($id, $product->getId());
         self::assertSame($name, $product->getName());
@@ -43,7 +43,7 @@ final class ProductTest extends \PHPUnit\Framework\TestCase
     {
         $id = Uuid::generate();
 
-        $product = Product::create($id, $this->generateString());
+        $product = Detail::create($id, $this->generateString());
 
         $newName = $this->generateString();
         $product->setName($newName);

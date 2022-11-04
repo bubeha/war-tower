@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\ReadModel\Recipe;
 
-use App\Shared\Domain\Entity\ProductCategory;
+use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\ValueObject\Uuid;
 use App\Shared\Infrastructure\ReadModel\Product\ProductView;
 use JsonSerializable;
@@ -12,9 +12,9 @@ use JsonSerializable;
 final class RecipeView implements JsonSerializable
 {
     /**
-     * @param iterable<\App\Shared\Domain\Entity\RecipeProduct> $products
+     * @param iterable<\App\Shared\Domain\Entity\Recipe\Item> $products
      */
-    public function __construct(private readonly Uuid $id, private readonly ProductCategory $productCategory, private readonly iterable $products)
+    public function __construct(private readonly Uuid $id, private readonly Product $productCategory, private readonly iterable $products)
     {
     }
 
@@ -25,7 +25,7 @@ final class RecipeView implements JsonSerializable
         foreach ($this->products as $value) {
             $required[] = ProductView::create(
                 $value->getId(),
-                $value->getProduct()->getProduct(),
+                $value->getProduct()->getDetail(),
                 $value->getProduct()->getCategory(),
                 $value->getQuantity()
             );
@@ -35,7 +35,7 @@ final class RecipeView implements JsonSerializable
             'id' => $this->id,
             'target' => [
                 'id' => $this->productCategory->getId(),
-                'product' => $this->productCategory->getProduct()->getName(),
+                'product' => $this->productCategory->getDetail()->getName(),
                 'category' => $this->productCategory->getCategory()->getName(),
             ],
             'required' => $required,
@@ -43,10 +43,10 @@ final class RecipeView implements JsonSerializable
     }
 
     /**
-     * @param iterable<\App\Shared\Domain\Entity\RecipeProduct> $products
+     * @param iterable<\App\Shared\Domain\Entity\Recipe\Item> $products
      * @return static
      */
-    public static function create(Uuid $id, ProductCategory $productCategory, iterable $products): self
+    public static function create(Uuid $id, Product $productCategory, iterable $products): self
     {
         return new self($id, $productCategory, $products);
     }

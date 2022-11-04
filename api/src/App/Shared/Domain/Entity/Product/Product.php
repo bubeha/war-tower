@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\Entity;
+namespace App\Shared\Domain\Entity\Product;
 
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
@@ -10,16 +10,16 @@ use App\Shared\Domain\ValueObject\Uuid;
 /**
  * @final
  */
-class ProductCategory
+class Product
 {
-    public function __construct(private Uuid $id, private readonly Product $product, private readonly Category $category, private readonly DateTime $createdAt)
+    public function __construct(private Uuid $id, private readonly Detail $detail, private readonly Category $category, private readonly DateTime $createdAt)
     {
     }
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, Product $product, Category $category, ?DateTime $createdAt = null): self
+    public static function create(Uuid $id, Detail $product, Category $category, ?DateTime $createdAt = null): self
     {
         return new self($id, $product, $category, $createdAt ?? DateTime::now());
     }
@@ -29,9 +29,9 @@ class ProductCategory
         return $this->id;
     }
 
-    public function getProduct(): Product
+    public function getDetail(): Detail
     {
-        return $this->product;
+        return $this->detail;
     }
 
     public function getCategory(): Category

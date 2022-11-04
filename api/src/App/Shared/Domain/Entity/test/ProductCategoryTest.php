@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Entity\test;
 
-use App\Shared\Domain\Entity\Category;
-use App\Shared\Domain\Entity\Product;
-use App\Shared\Domain\Entity\ProductCategory;
+use App\Shared\Domain\Entity\Product\Category;
+use App\Shared\Domain\Entity\Product\Detail;
+use App\Shared\Domain\Entity\Product\Product;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Uuid;
 use DG\BypassFinals;
@@ -30,15 +30,15 @@ final class ProductCategoryTest extends TestCase
      */
     public function testProductCategoryTest(): void
     {
-        $product = Mockery::mock(Product::class);
+        $product = Mockery::mock(Detail::class);
         $category = Mockery::mock(Category::class);
 
         $id = Uuid::generate();
         $date = DateTime::now();
-        $productCategory = ProductCategory::create($id, $product, $category, $date);
+        $productCategory = Product::create($id, $product, $category, $date);
 
         self::assertSame($id, $productCategory->getId());
-        self::assertSame($product, $productCategory->getProduct());
+        self::assertSame($product, $productCategory->getDetail());
         self::assertSame($category, $productCategory->getCategory());
         self::assertSame($date, $productCategory->getCreatedAt());
     }

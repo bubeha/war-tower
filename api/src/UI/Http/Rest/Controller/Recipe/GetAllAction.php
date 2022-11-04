@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller\Recipe;
 
-use App\Shared\Domain\Entity\Recipe;
+use App\Shared\Domain\Entity\Recipe\Recipe;
 use App\Shared\Infrastructure\ReadModel\Recipe\RecipeRepository;
 use App\Shared\Infrastructure\ReadModel\Recipe\RecipeView;
 use Symfony\Component\HttpFoundation\Response;

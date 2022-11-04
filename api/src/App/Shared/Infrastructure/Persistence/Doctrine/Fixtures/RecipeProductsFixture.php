@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
-use App\Shared\Domain\Entity\Recipe;
-use App\Shared\Domain\Entity\RecipeProduct;
+use App\Shared\Domain\Entity\Recipe\Item;
+use App\Shared\Domain\Entity\Recipe\Recipe;
 use App\Shared\Domain\ValueObject\Uuid;
 use App\Shared\Infrastructure\ReadModel\ProductCategory\ProductCategoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -39,7 +39,7 @@ final class RecipeProductsFixture extends Fixture implements DependentFixtureInt
         ;
 
         foreach ($recipes as $recipe) {
-            $entry = RecipeProduct::create(Uuid::generate(), $recipe, $product, 5);
+            $entry = Item::create(Uuid::generate(), $recipe, $product, 5);
             $manager->persist($entry);
         }
         $manager->flush();

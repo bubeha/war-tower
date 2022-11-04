@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\ReadModel\Recipe;
 
-use App\Shared\Domain\Entity\Recipe;
+use App\Shared\Domain\Entity\Recipe\Recipe;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
