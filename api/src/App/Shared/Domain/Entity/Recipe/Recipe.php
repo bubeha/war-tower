@@ -18,11 +18,11 @@ class Recipe
     /**
      * @var Collection<int,\App\Shared\Domain\Entity\Recipe\Item>
      */
-    private Collection $products;
+    private Collection $items;
 
     public function __construct(private Uuid $id, private Product $product, private readonly DateTime $createdAt)
     {
-        $this->products = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     /**
@@ -36,9 +36,9 @@ class Recipe
     /**
      * @return \Doctrine\Common\Collections\Collection<int,\App\Shared\Domain\Entity\Recipe\Item>
      */
-    public function getProducts(): Collection
+    public function getItems(): Collection
     {
-        return $this->products;
+        return $this->items;
     }
 
     public function setProduct(Product $product): void

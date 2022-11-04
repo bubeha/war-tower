@@ -29,15 +29,15 @@ final class ProductCategoryRepository extends PostgresRepository
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @psalm-param AbstractQuery::HYDRATE_* $hydration
      */
-    public function getProductFor(int $hydration = AbstractQuery::HYDRATE_OBJECT): Product
+    public function getProduct(int $hydration = AbstractQuery::HYDRATE_OBJECT): Product
     {
         /** @var Product|null $model */
-        $model = $this->repository->createQueryBuilder('pc')
-            ->innerJoin(Detail::class, 'p', Join::WITH, 'pc.product = p.id')
-            ->innerJoin(Category::class, 'c', Join::WITH, 'pc.category = c.id')
-            ->where('p.name = :product AND c.name = :category')
+        $model = $this->repository->createQueryBuilder('p')
+            ->innerJoin(Detail::class, 'd', Join::WITH, 'p.detail = d.id')
+            ->innerJoin(Category::class, 'c', Join::WITH, 'p.category = c.id')
+            ->where('d.name = :name AND c.name = :category')
             ->setParameters([
-                'product' => 'Weapon',
+                'name' => 'Weapon',
                 'category' => 'Raw',
             ])
             ->setMaxResults(1)
@@ -45,10 +45,10 @@ final class ProductCategoryRepository extends PostgresRepository
             ->getOneOrNullResult($hydration)
         ;
 
-        if ($model instanceof Product) {
-            return $model;
+        if (null === $model) {
+            throw new LogicException('Not Found Model');
         }
 
-        throw new LogicException('Not Found Model');
+        return $model;
     }
 }

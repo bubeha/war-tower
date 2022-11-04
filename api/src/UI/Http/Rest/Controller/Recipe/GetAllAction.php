@@ -26,7 +26,7 @@ final class GetAllAction
 
         return OpenApi::fromPayload(
             array_map(
-                static fn (Recipe $recipe) => RecipeView::create($recipe->getId(), $recipe->getProduct(), $recipe->getProducts()),
+                static fn (Recipe $recipe) => RecipeView::create($recipe->getId(), $recipe->getProduct(), $recipe->getItems()),
                 $data
             ),
             Response::HTTP_OK

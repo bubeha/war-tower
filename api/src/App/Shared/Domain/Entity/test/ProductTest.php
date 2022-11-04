@@ -32,7 +32,6 @@ final class ProductTest extends \PHPUnit\Framework\TestCase
         self::assertSame($id, $product->getId());
         self::assertSame($name, $product->getName());
         self::assertSame($date, $product->getCreatedAt());
-        self::assertNull($product->getUpdatedAt());
     }
 
     /**
@@ -49,7 +48,6 @@ final class ProductTest extends \PHPUnit\Framework\TestCase
         $product->setName($newName);
 
         self::assertSame($newName, $product->getName());
-        self::assertNotNull($product->getUpdatedAt());
     }
 
     /**

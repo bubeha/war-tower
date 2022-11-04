@@ -33,7 +33,6 @@ final class CategoryTest extends TestCase
         self::assertSame($id, $category->getId());
         self::assertSame($name, $category->getName());
         self::assertSame($date, $category->getCreatedAt());
-        self::assertNull($category->getUpdatedAt());
     }
 
     /**
@@ -50,7 +49,6 @@ final class CategoryTest extends TestCase
         $category->setName($newName);
 
         self::assertSame($newName, $category->getName());
-        self::assertNotNull($category->getUpdatedAt());
     }
 
     /**

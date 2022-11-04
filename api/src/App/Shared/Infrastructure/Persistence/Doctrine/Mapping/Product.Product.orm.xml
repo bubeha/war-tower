@@ -3,17 +3,20 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
           http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Shared\Domain\Entity\Recipe\Item" table="recipe_items">
+    <entity name="App\Shared\Domain\Entity\Product\Product" table="products">
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <one-to-one field="recipe" target-entity="App\Shared\Domain\Entity\Recipe">
-            <join-column name="recipe_id" referenced-column-name="id"/>
-        </one-to-one>
-        <one-to-one field="product" target-entity="App\Shared\Domain\Entity\Product">
-            <join-column name="product_id" referenced-column-name="id"/>
-        </one-to-one>
-        <field name="quantity" type="integer" column="quantity"/>
+        <many-to-one field="detail" target-entity="App\Shared\Domain\Entity\Product\Detail">
+            <join-column nullable="false"/>
+        </many-to-one>
+        <many-to-one field="category" target-entity="App\Shared\Domain\Entity\Product\Category">
+            <join-column nullable="false"/>
+        </many-to-one>
+
+        <unique-constraints>
+            <unique-constraint name="products_categories_detail_id_category_id_key" columns="detail_id,category_id"/>
+        </unique-constraints>
         <field name="createdAt" type="datetime_immutable" column="created_at"/>
     </entity>
 </doctrine-mapping>

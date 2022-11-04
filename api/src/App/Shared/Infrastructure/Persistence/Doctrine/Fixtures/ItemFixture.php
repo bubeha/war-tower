@@ -15,7 +15,7 @@ use Doctrine\Persistence\ObjectManager;
 /**
  * @psalm-suppress PropertyNotSetInConstructor
  */
-final class RecipeProductsFixture extends Fixture implements DependentFixtureInterface
+final class ItemFixture extends Fixture implements DependentFixtureInterface
 {
     public function __construct(private readonly ProductCategoryRepository $repository)
     {
@@ -32,7 +32,7 @@ final class RecipeProductsFixture extends Fixture implements DependentFixtureInt
      */
     public function load(ObjectManager $manager): void
     {
-        $product = $this->repository->getProductFor();
+        $product = $this->repository->getProduct();
 
         $recipes = $manager->getRepository(Recipe::class)
             ->findAll()

@@ -16,7 +16,7 @@ final class RecipeFixture extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            ProductCategoryFixture::class,
+            ProductFixture::class,
         ];
     }
 
