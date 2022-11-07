@@ -18,7 +18,7 @@ class Recipe
     /**
      * @var Collection<int,\App\Shared\Domain\Entity\Recipe\Item>
      */
-    private readonly Collection $items;
+    private Collection $items;
 
     public function __construct(
         /** @noRector ReadOnlyPropertyRector */
