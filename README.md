@@ -39,6 +39,8 @@ make down
 
 ## Routes
 
-| Route            | Description     |
-|------------------|-----------------|
-| [/api/recipes](http://api.localhost/api/recipes) | get all recipes |
+| Method                                               | Route                                              | Description      |
+|------------------------------------------------------|----------------------------------------------------|------------------|
+| GET | [/api/recipes](http://api.localhost/api/recipes)   | get all recipes  |
+| GET | [/api/products](http://api.localhost/api/products) | get all products |
+
