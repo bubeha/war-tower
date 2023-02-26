@@ -38,8 +38,9 @@ services:
       context: ./api/docker
       dockerfile: development/php-fpm/Dockerfile
       args:
-        PHP_VERSION: 8.1
-        XDEBUG_VERSION: 3.1.4
+        PHP_VERSION: 8.2
+        XDEBUG_VERSION: 3.2.0
+        COMPOSER_VERSION: 2.5.4
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"
@@ -53,8 +54,9 @@ services:
       context: ./api/docker
       dockerfile: development/php-cli/Dockerfile
       args:
-        PHP_VERSION: 8.1
-        XDEBUG_VERSION: 3.1.4
+        PHP_VERSION: 8.2
+        XDEBUG_VERSION: 3.2.0
+        COMPOSER_VERSION: 2.5.4
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"

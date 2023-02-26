@@ -4,7 +4,7 @@ FROM php:${PHP_VERSION}-fpm-alpine
 
 ARG XDEBUG_VERSION
 
-RUN apk add --no-cache postgresql-dev git icu-dev \
+RUN apk add --no-cache postgresql-dev git icu-dev linux-headers \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && git clone --branch ${XDEBUG_VERSION} --depth 1 https://github.com/xdebug/xdebug.git /usr/src/php/ext/xdebug \
     && docker-php-ext-configure intl \
