@@ -41,9 +41,9 @@ final class DateTimeType extends DateTimeImmutableType
      *
      * @throws \Doctrine\DBAL\Types\ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): null|DateTime
+    public function convertToPHPValue($value, AbstractPlatform $platform): DateTime
     {
-        if (null === $value || $value instanceof DateTime) {
+        if ($value instanceof DateTime) {
             return $value;
         }
 

@@ -30,15 +30,17 @@ final class ProductCategoryTest extends TestCase
      */
     public function testProductCategoryTest(): void
     {
-        $product = Mockery::mock(Detail::class);
+        /** @var Detail $detail */
+        $detail = Mockery::mock(Detail::class);
+        /** @var Category $category */
         $category = Mockery::mock(Category::class);
 
         $id = Uuid::generate();
         $date = DateTime::now();
-        $productCategory = Product::create($id, $product, $category, $date);
+        $productCategory = Product::create($id, $detail, $category, $date);
 
         self::assertSame($id, $productCategory->getId());
-        self::assertSame($product, $productCategory->getDetail());
+        self::assertSame($detail, $productCategory->getDetail());
         self::assertSame($category, $productCategory->getCategory());
         self::assertSame($date, $productCategory->getCreatedAt());
     }

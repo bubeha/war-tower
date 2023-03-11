@@ -137,17 +137,11 @@
     "myclabs/deep-copy": {
         "version": "1.11.0"
     },
-    "n98/junit-xml": {
-        "version": "1.1.0"
-    },
     "netresearch/jsonmapper": {
         "version": "v4.0.0"
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
-    },
-    "openlss/lib-array2xml": {
-        "version": "1.0.0"
     },
     "overtrue/phplint": {
         "version": "5.1.0"
@@ -461,8 +455,5 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
-    },
-    "webmozart/path-util": {
-        "version": "2.3.0"
     }
 }

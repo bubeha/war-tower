@@ -24,7 +24,7 @@ final class ExperienceType extends IntegerType
         return $value->getValue();
     }
 
-    public function convertToPHPValue($value, $platform): Experience
+    public function convertToPHPValue($value, AbstractPlatform $platform): Experience
     {
         if (!is_numeric($value)) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');

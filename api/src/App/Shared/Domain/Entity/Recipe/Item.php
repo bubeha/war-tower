@@ -14,14 +14,12 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 class Item
 {
     public function __construct(
-        /** @noRector ReadOnlyPropertyRector */
-        private Uuid $id,
+        private readonly Uuid $id,
         private Recipe $recipe,
         private Product $product,
         private int $quantity,
         private readonly DateTime $createdAt
-    )
-    {
+    ) {
     }
 
     /**

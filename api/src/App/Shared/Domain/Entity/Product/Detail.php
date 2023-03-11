@@ -13,8 +13,7 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 class Detail
 {
     public function __construct(
-        /** @noRector ReadOnlyPropertyRector */
-        private Uuid $id,
+        private readonly Uuid $id,
         private string $name,
         private readonly DateTime $createdAt
     ) {

@@ -18,6 +18,7 @@ final class UuidGeneratorTest extends TestCase
 {
     public function testUuidGeneratorGenerate(): void
     {
+        /** @var \Doctrine\ORM\EntityManagerInterface $em */
         $em = Mockery::mock(EntityManager::class);
         $entity = new Entity();
         $generator = new UuidGenerator();

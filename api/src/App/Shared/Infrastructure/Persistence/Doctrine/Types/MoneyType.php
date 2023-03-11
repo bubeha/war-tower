@@ -24,7 +24,7 @@ final class MoneyType extends IntegerType
         return $value->getConverted();
     }
 
-    public function convertToPHPValue($value, $platform): Money
+    public function convertToPHPValue($value, AbstractPlatform $platform): Money
     {
         if (!is_numeric($value)) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');

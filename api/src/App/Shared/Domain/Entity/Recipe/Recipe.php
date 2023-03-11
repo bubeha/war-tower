@@ -21,8 +21,7 @@ class Recipe
     private Collection $items;
 
     public function __construct(
-        /** @noRector ReadOnlyPropertyRector */
-        private Uuid $id,
+        private readonly Uuid $id,
         private Product $product,
         private readonly DateTime $createdAt
     ) {
@@ -68,5 +67,15 @@ class Recipe
     public function addItem(Item $item): void
     {
         $this->items->add($item);
+    }
+
+    /**
+     * @param Collection<int,\App\Shared\Domain\Entity\Recipe\Item> $items
+     */
+    public function setItems(Collection $items): self
+    {
+        $this->items = $items;
+
+        return $this;
     }
 }
