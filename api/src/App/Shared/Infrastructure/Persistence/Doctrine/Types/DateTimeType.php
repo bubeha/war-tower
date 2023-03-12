@@ -15,13 +15,11 @@ use Doctrine\DBAL\Types\Types;
 final class DateTimeType extends DateTimeImmutableType
 {
     /**
-     * {@inheritdoc}
-     *
      * @throws \Doctrine\DBAL\Types\ConversionException
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform): null|string
     {
-        if (null === $value) {
+        if ($value === null) {
             return null;
         }
 
@@ -37,8 +35,6 @@ final class DateTimeType extends DateTimeImmutableType
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @throws \Doctrine\DBAL\Types\ConversionException
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): DateTime

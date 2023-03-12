@@ -10,9 +10,6 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
-use function random_bytes;
-use function random_int;
-
 /**
  * @internal
  */
@@ -56,6 +53,6 @@ final class CategoryTest extends TestCase
      */
     private function generateString(): string
     {
-        return random_bytes(random_int(1, 255));
+        return \random_bytes(\random_int(1, 255));
     }
 }

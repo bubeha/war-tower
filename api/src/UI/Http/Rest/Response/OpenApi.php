@@ -14,7 +14,7 @@ final class OpenApi extends JsonResponse
         mixed $data = null,
         int $status = self::HTTP_OK,
         array $headers = [],
-        bool $json = false
+        bool $json = false,
     ) {
         parent::__construct($data, $status, $headers, $json);
     }

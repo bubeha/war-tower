@@ -14,7 +14,7 @@ final class RecipeNormalizer extends CustomNormalizer
     /**
      * @throws Exception
      */
-    public function normalize(mixed $object, string $format = null, array $context = []): array|string|int|float|bool|ArrayObject|null
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array|string|int|float|bool|ArrayObject|null
     {
         /**
          * @noRector
@@ -44,7 +44,7 @@ final class RecipeNormalizer extends CustomNormalizer
         ];
     }
 
-    public function supportsNormalization(mixed $data, string $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null): bool
     {
         return $data instanceof Recipe;
     }

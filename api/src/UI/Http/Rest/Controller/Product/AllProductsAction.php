@@ -28,7 +28,7 @@ final class AllProductsAction
     {
         return OpenApi::fromPayload(
             $this->serializer->normalize($this->repository->all()),
-            Response::HTTP_OK
+            Response::HTTP_OK,
         );
     }
 }

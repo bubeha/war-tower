@@ -9,9 +9,6 @@ use JsonException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 
-use function json_decode;
-use function json_encode;
-
 /**
  * @internal
  */
@@ -25,7 +22,7 @@ final class OpenApiTest extends TestCase
         $response = OpenApi::empty(Response::HTTP_UNAUTHORIZED);
 
         self::assertSame(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
-        self::assertSame(json_encode(new ArrayObject(), JSON_THROW_ON_ERROR), $response->getContent());
+        self::assertSame(\json_encode(new ArrayObject(), JSON_THROW_ON_ERROR), $response->getContent());
     }
 
     /**
@@ -38,12 +35,12 @@ final class OpenApiTest extends TestCase
         ], Response::HTTP_OK);
 
         $content = $response->getContent();
-        if (false === $content) {
+        if ($content === false) {
             self::fail('Content is false');
         }
 
         /** @var array{email: string} $decode */
-        $decode = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        $decode = \json_decode($content, true, 512, JSON_THROW_ON_ERROR);
         self::assertArrayHasKey('email', $decode);
         self::assertSame('some@email.com', $decode['email']);
     }

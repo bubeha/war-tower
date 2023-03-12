@@ -23,7 +23,7 @@ class Recipe
     public function __construct(
         private readonly Uuid $id,
         private Product $product,
-        private readonly DateTime $createdAt
+        private readonly DateTime $createdAt,
     ) {
         $this->items = new ArrayCollection();
     }

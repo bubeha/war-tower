@@ -58,8 +58,8 @@ final class UuidTypeTest extends TestCase
             Uuid::class,
             $this->type->convertToPHPValue(
                 Uuid::generate(),
-                new PostgreSQLPlatform()
-            )
+                new PostgreSQLPlatform(),
+            ),
         );
     }
 

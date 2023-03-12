@@ -15,7 +15,7 @@ class Detail
     public function __construct(
         private readonly Uuid $id,
         private string $name,
-        private readonly DateTime $createdAt
+        private readonly DateTime $createdAt,
     ) {
     }
 
@@ -27,7 +27,7 @@ class Detail
         return new self(
             $id,
             $name,
-            $createdAt ?? DateTime::now()
+            $createdAt ?? DateTime::now(),
         );
     }
 

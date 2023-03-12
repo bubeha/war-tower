@@ -28,9 +28,9 @@ final class AllRecipesAction
     {
         return OpenApi::fromPayload(
             $this->serializer->normalize(
-                $this->repository->all()
+                $this->repository->all(),
             ),
-            Response::HTTP_OK
+            Response::HTTP_OK,
         );
     }
 }

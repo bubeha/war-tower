@@ -19,7 +19,7 @@ class User
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, DateTime $createdAt = null): self
+    public static function create(Uuid $id, ?DateTime $createdAt = null): self
     {
         return new self($id, $createdAt ?? DateTime::now());
     }

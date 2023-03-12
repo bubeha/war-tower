@@ -59,8 +59,8 @@ final class DateTimeTypeTest extends TestCase
             DateTime::class,
             $this->type->convertToPHPValue(
                 DateTime::now(),
-                new PostgreSQLPlatform()
-            )
+                new PostgreSQLPlatform(),
+            ),
         );
     }
 

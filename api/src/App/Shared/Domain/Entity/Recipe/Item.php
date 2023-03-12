@@ -18,7 +18,7 @@ class Item
         private Recipe $recipe,
         private Product $product,
         private int $quantity,
-        private readonly DateTime $createdAt
+        private readonly DateTime $createdAt,
     ) {
     }
 

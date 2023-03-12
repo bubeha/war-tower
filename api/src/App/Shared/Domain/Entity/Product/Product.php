@@ -16,7 +16,7 @@ class Product
         private readonly Uuid $id,
         private readonly Detail $detail,
         private readonly Category $category,
-        private readonly DateTime $createdAt
+        private readonly DateTime $createdAt,
     ) {
     }
 
