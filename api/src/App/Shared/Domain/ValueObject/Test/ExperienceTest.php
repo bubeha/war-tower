@@ -8,8 +8,6 @@ use App\Shared\Domain\ValueObject\Experience;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
-use function random_int;
-
 /**
  * @internal
  */
@@ -20,7 +18,7 @@ final class ExperienceTest extends TestCase
      */
     public function testGetValue(): void
     {
-        $data = random_int(0, 255);
+        $data = \random_int(0, 255);
         self::assertSame($data, Experience::create($data)->getValue());
     }
 

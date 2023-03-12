@@ -9,8 +9,6 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\IntegerType;
 
-use function is_numeric;
-
 final class MoneyType extends IntegerType
 {
     private const TYPE = 'money';
@@ -24,9 +22,9 @@ final class MoneyType extends IntegerType
         return $value->getConverted();
     }
 
-    public function convertToPHPValue($value, $platform): Money
+    public function convertToPHPValue($value, AbstractPlatform $platform): Money
     {
-        if (!is_numeric($value)) {
+        if (!\is_numeric($value)) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');
         }
 

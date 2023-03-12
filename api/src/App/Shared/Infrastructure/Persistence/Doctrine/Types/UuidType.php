@@ -10,8 +10,6 @@ use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\GuidType;
 use Throwable;
 
-use function is_string;
-
 final class UuidType extends GuidType
 {
     public const TYPE = 'uuid';
@@ -26,7 +24,7 @@ final class UuidType extends GuidType
             return $value;
         }
 
-        if (is_string($value)) {
+        if (\is_string($value)) {
             try {
                 return Uuid::fromString($value);
             } catch (Throwable) {
@@ -46,7 +44,7 @@ final class UuidType extends GuidType
             throw ConversionException::conversionFailedInvalidType(
                 $value,
                 $this->getName(),
-                ['null', Uuid::class]
+                ['null', Uuid::class],
             );
         }
 

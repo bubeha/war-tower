@@ -9,8 +9,6 @@ use InvalidArgumentException;
 use JsonException;
 use PHPUnit\Framework\TestCase;
 
-use function json_encode;
-
 /**
  * @internal
  */
@@ -24,7 +22,7 @@ final class UuidTest extends TestCase
         $uuid = Uuid::generate();
 
         self::assertSame((string)$uuid, $uuid->toString());
-        self::assertSame(json_encode($uuid->toString(), JSON_THROW_ON_ERROR), json_encode($uuid, JSON_THROW_ON_ERROR));
+        self::assertSame(\json_encode($uuid->toString(), JSON_THROW_ON_ERROR), \json_encode($uuid, JSON_THROW_ON_ERROR));
     }
 
     public function testIncorrectUuid(): void

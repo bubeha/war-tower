@@ -12,14 +12,9 @@ final class Uuid implements JsonSerializable
 {
     public function __construct(private readonly string $value)
     {
-        if (false === UuidV4::isValid($this->value)) {
+        if (UuidV4::isValid($this->value) === false) {
             throw new InvalidArgumentException("Invalid UUID4: {$this->value}");
         }
-    }
-
-    public function __toString(): string
-    {
-        return $this->toString();
     }
 
     public static function fromString(string $value): self
@@ -30,6 +25,11 @@ final class Uuid implements JsonSerializable
     public static function generate(): self
     {
         return new self((string)new UuidV4());
+    }
+
+    public function __toString(): string
+    {
+        return $this->toString();
     }
 
     public function equals(self $other): bool

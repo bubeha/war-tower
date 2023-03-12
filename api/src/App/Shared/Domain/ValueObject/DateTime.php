@@ -24,19 +24,6 @@ final class DateTime extends DateTimeImmutable
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function fromString(string $dateTime): self
-    {
-        return self::create($dateTime);
-    }
-
-    public function toString(): string
-    {
-        return $this->format(self::FORMAT);
-    }
-
-    /**
-     * @throws \App\Shared\Domain\Exception\DateTimeException
-     */
     public static function create(string $value = ''): self
     {
         try {
@@ -44,5 +31,26 @@ final class DateTime extends DateTimeImmutable
         } catch (Throwable $e) {
             throw new DateTimeException(new Exception($e->getMessage(), (int)$e->getCode(), $e));
         }
+    }
+
+    /**
+     * @throws \App\Shared\Domain\Exception\DateTimeException
+     */
+    public static function fromString(string $dateTime): self
+    {
+        return self::create($dateTime);
+    }
+
+    /**
+     * @param array<array-key, DateTimeImmutable> $data
+     */
+    public function __unserialize(array $data): void
+    {
+        parent::__unserialize($data);
+    }
+
+    public function toString(): string
+    {
+        return $this->format(self::FORMAT);
     }
 }

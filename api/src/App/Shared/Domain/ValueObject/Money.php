@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\ValueObject;
 
-use function round;
-
 final class Money
 {
     public function __construct(private readonly int $value)
@@ -19,7 +17,7 @@ final class Money
 
     public static function fromOriginal(int|float $value): self
     {
-        return self::fromConverted((int)round($value * 100));
+        return self::fromConverted((int)\round($value * 100));
     }
 
     public function getConverted(): int

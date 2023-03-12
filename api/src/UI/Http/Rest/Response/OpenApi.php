@@ -8,15 +8,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class OpenApi extends JsonResponse
 {
-    protected $charset = 'UTF-8';
-
     public function __construct(
         mixed $data = null,
         int $status = self::HTTP_OK,
         array $headers = [],
-        bool $json = false
+        bool $json = false,
+        string $charset = 'UTF-8',
     ) {
         parent::__construct($data, $status, $headers, $json);
+
+        $this->charset = $charset;
     }
 
     public static function fromPayload(mixed $payload, int $status, array $header = []): self

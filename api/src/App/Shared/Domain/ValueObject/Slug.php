@@ -10,14 +10,14 @@ final class Slug
     {
     }
 
-    public function __toString(): string
-    {
-        return $this->toString();
-    }
-
     public static function fromString(string $string): self
     {
         return new self($string);
+    }
+
+    public function __toString(): string
+    {
+        return $this->toString();
     }
 
     public function toString(): string

@@ -23,9 +23,6 @@ abstract class PostgresRepository
         $this->repository = $this->entityManager->getRepository($this->getEntityClass());
     }
 
-    /** @return class-string<T> */
-    abstract protected function getEntityClass(): string;
-
     /**
      * @psalm-param AbstractQuery::HYDRATE_* $hydration
      * @return T
@@ -39,7 +36,7 @@ abstract class PostgresRepository
             ->getOneOrNullResult($hydration)
         ;
 
-        if (null === $entry) {
+        if ($entry === null) {
             // todo replace
             throw new LogicException();
         }
@@ -52,4 +49,7 @@ abstract class PostgresRepository
         $this->entityManager->persist($entry);
         $this->entityManager->flush();
     }
+
+    /** @return class-string<T> */
+    abstract protected function getEntityClass(): string;
 }
