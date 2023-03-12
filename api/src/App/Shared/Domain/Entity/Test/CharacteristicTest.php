@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Shared\Domain\Entity\Test;
 
 use App\Shared\Domain\Entity\Characteristic;
@@ -9,6 +11,9 @@ use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertSame;
 
+/**
+ * @internal
+ */
 final class CharacteristicTest extends TestCase
 {
     /**

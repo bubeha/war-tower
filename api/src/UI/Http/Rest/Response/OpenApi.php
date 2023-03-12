@@ -13,7 +13,7 @@ final class OpenApi extends JsonResponse
         int $status = self::HTTP_OK,
         array $headers = [],
         bool $json = false,
-        string $charset = 'UTF-8'
+        string $charset = 'UTF-8',
     ) {
         parent::__construct($data, $status, $headers, $json);
 

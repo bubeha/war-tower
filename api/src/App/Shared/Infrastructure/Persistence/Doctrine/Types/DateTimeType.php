@@ -35,7 +35,7 @@ final class DateTimeType extends DateTimeImmutableType
     }
 
     /**
-     * @param null|mixed $value
+     * @param mixed|null $value
      * @throws \Doctrine\DBAL\Types\ConversionException
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): ?DateTime
