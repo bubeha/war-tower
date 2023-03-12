@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\Exception\test;
+namespace App\Shared\Domain\Exception\Test;
 
 use App\Shared\Domain\Exception\DateTimeException;
 use App\Shared\Domain\ValueObject\DateTime;

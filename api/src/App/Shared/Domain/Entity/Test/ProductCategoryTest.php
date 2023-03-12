@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\Entity\test;
+namespace App\Shared\Domain\Entity\Test;
 
-use App\Shared\Domain\Entity\Product\Category;
-use App\Shared\Domain\Entity\Product\Detail;
-use App\Shared\Domain\Entity\Product\Product;
+use App\Shared\Domain\Entity\Category;
+use App\Shared\Domain\Entity\Unit\Detail;
+use App\Shared\Domain\Entity\Unit\Unit;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use DG\BypassFinals;
@@ -37,7 +37,7 @@ final class ProductCategoryTest extends TestCase
 
         $id = Uuid::generate();
         $date = DateTime::now();
-        $productCategory = Product::create($id, $detail, $category, $date);
+        $productCategory = Unit::create($id, $detail, $category, $date);
 
         self::assertSame($id, $productCategory->getId());
         self::assertSame($detail, $productCategory->getDetail());

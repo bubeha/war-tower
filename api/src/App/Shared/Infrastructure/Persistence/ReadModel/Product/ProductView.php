@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\ReadModel\Product;
 
-use App\Shared\Domain\Entity\Product\Category;
-use App\Shared\Domain\Entity\Product\Detail;
+use App\Shared\Domain\Entity\Category;
+use App\Shared\Domain\Entity\Unit\Detail;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use JsonSerializable;
 

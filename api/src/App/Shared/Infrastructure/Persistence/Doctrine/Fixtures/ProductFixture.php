@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
-use App\Shared\Domain\Entity\Product\Category;
-use App\Shared\Domain\Entity\Product\Detail;
-use App\Shared\Domain\Entity\Product\Product;
+use App\Shared\Domain\Entity\Category;
+use App\Shared\Domain\Entity\Unit\Detail;
+use App\Shared\Domain\Entity\Unit\Unit;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -32,7 +32,7 @@ final class ProductFixture extends Fixture implements DependentFixtureInterface
 
         foreach ($details as $detail) {
             foreach ($categories as $category) {
-                $product = Product::create(Uuid::generate(), $detail, $category);
+                $product = Unit::create(Uuid::generate(), $detail, $category);
                 $manager->persist($product);
             }
         }

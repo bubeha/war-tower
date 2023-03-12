@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\ReadModel\Product;
 
-use App\Shared\Domain\Entity\Product\Category;
-use App\Shared\Domain\Entity\Product\Detail;
-use App\Shared\Domain\Entity\Product\Product;
+use App\Shared\Domain\Entity\Category;
+use App\Shared\Domain\Entity\Unit\Detail;
+use App\Shared\Domain\Entity\Unit\Unit;
 use App\Shared\Domain\Repository\Product\ProductRepository;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 use Doctrine\ORM\Query\Expr\Join;
 
 /**
- * @template-extends PostgresRepository<Product>
+ * @template-extends PostgresRepository<Unit>
  */
 final class PostgresqlProductRepository extends PostgresRepository implements ProductRepository
 {
@@ -24,7 +24,7 @@ final class PostgresqlProductRepository extends PostgresRepository implements Pr
     /**
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getProductForFixture(string $detail, string $category): Product
+    public function getProductForFixture(string $detail, string $category): Unit
     {
         $query = $this->repository->createQueryBuilder('p')
             ->innerJoin(Detail::class, 'd', Join::WITH, 'p.detail = d.id')
@@ -41,6 +41,6 @@ final class PostgresqlProductRepository extends PostgresRepository implements Pr
 
     protected function getEntityClass(): string
     {
-        return Product::class;
+        return Unit::class;
     }
 }

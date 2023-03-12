@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
-use App\Shared\Domain\Entity\Product\Detail;
+use App\Shared\Domain\Entity\Unit\Detail;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -24,7 +24,7 @@ final class DetailFixture extends Fixture
     }
 
     /**
-     * @return array<\App\Shared\Domain\Entity\Product\Detail>
+     * @return array<\App\Shared\Domain\Entity\Unit\Detail>
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
     public function getProducts(): array

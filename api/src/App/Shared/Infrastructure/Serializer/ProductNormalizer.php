@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Serializer;
 
-use App\Shared\Domain\Entity\Product\Product;
+use App\Shared\Domain\Entity\Unit\Unit;
 use ArrayObject;
 use Symfony\Component\Serializer\Normalizer\CustomNormalizer;
 
@@ -14,7 +14,7 @@ final class ProductNormalizer extends CustomNormalizer
     {
         /**
          * @noRector
-         * @var Product $object
+         * @var Unit $object
          */
         return [
             'id' => $object->getId(),
@@ -25,6 +25,6 @@ final class ProductNormalizer extends CustomNormalizer
 
     public function supportsNormalization(mixed $data, ?string $format = null): bool
     {
-        return $data instanceof Product;
+        return $data instanceof Unit;
     }
 }

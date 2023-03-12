@@ -18,7 +18,6 @@ final class RecipeNormalizer extends CustomNormalizer
     {
         /**
          * @noRector
-         * @var Recipe $object
          */
         $required = [];
 

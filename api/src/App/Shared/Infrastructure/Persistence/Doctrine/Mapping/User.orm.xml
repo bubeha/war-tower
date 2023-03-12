@@ -7,7 +7,9 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
+        <field name="name" type="string" column="name"/>
+        <field name="nickname" type="string" column="nickname" unique="true" />
+        <field name="email" type="string" column="email" unique="true" />
         <field name="createdAt" type="datetime_immutable" column="created_at"/>
-        <field name="updatedAt" type="datetime_immutable" column="updated_at" nullable="true"/>
     </entity>
 </doctrine-mapping>

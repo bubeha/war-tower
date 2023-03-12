@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\Entity\test;
+namespace App\Shared\Domain\Entity\Test;
 
-use App\Shared\Domain\Entity\Product\Detail;
+use App\Shared\Domain\Entity\Unit\Detail;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use Exception;

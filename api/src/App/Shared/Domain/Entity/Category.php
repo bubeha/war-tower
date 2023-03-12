@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Domain\Entity\Product;
+namespace App\Shared\Domain\Entity;
 
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
@@ -10,7 +10,7 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 /**
  * @final
  */
-class Detail
+class Category
 {
     public function __construct(
         private readonly Uuid $id,
