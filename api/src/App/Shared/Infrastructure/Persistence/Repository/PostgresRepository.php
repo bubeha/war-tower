@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Repository;
 
+use App\Shared\Infrastructure\Persistence\ReadModel\Exception\NotFoundException;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
-use LogicException;
 
 /**
  * @template T as object
@@ -26,7 +26,7 @@ abstract class PostgresRepository
     /**
      * @psalm-param AbstractQuery::HYDRATE_* $hydration
      * @return T
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \App\Shared\Infrastructure\Persistence\ReadModel\Exception\NotFoundException|\Doctrine\ORM\NonUniqueResultException
      */
     protected function oneOrException(QueryBuilder $builder, int $hydration = AbstractQuery::HYDRATE_OBJECT)
     {
@@ -37,8 +37,7 @@ abstract class PostgresRepository
         ;
 
         if ($entry === null) {
-            // todo replace
-            throw new LogicException();
+            throw new NotFoundException();
         }
 
         return $entry;
