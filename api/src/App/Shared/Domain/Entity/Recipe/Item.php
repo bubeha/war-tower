@@ -19,8 +19,7 @@ class Item
         private readonly Unit $unit,
         private int $quantity,
         private readonly DateTime $createdAt,
-    )
-    {
+    ) {
     }
 
     /**

@@ -13,7 +13,7 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 class Category
 {
     public function __construct(
-        private readonly Uuid $id,
+        private Uuid $id,
         private string $name,
         private readonly DateTime $createdAt,
     ) {
@@ -49,5 +49,10 @@ class Category
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
+    }
+
+    public function setId(Uuid $id): void
+    {
+        $this->id = $id;
     }
 }

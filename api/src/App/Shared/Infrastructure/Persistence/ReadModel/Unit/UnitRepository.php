@@ -10,18 +10,21 @@ use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 /**
  * @template-extends PostgresRepository<\App\Shared\Domain\Entity\Unit\Unit>
  */
-class UnitRepository extends PostgresRepository implements GetAllUnits
+final class UnitRepository extends PostgresRepository implements GetAllUnits
 {
+    public function all(): array
+    {
+        /** @var list<Unit> $result */
+        $result = $this->repository->createQueryBuilder('u')
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $result;
+    }
 
     protected function getEntityClass(): string
     {
         return Unit::class;
-    }
-
-    public function all(): array
-    {
-        return $this->repository->createQueryBuilder('u')
-            ->getQuery()
-            ->getResult();
     }
 }

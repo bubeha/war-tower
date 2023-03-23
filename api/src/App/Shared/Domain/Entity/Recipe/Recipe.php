@@ -18,8 +18,7 @@ class Recipe
         private string $name,
         private Unit $unit,
         private readonly DateTime $createdAt,
-    )
-    {
+    ) {
     }
 
     /**

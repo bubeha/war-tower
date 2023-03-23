@@ -7,7 +7,7 @@ namespace App\Shared\Infrastructure\Persistence\ReadModel\Unit;
 interface GetAllUnits
 {
     /**
-     * @return list<\App\Shared\Domain\Entity\Unit\Unit>
+     * @return array<int,\App\Shared\Domain\Entity\Unit\Unit>
      */
     public function all(): array;
 }
