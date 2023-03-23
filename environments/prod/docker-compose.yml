@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./api/docker
+      dockerfile: production/nginx/Dockerfile
+
+  php-fpm:
+    build:
+      context: ./api/docker
+      dockerfile: production/php-fpm/Dockerfile
+      args:
+        PHP_VERSION: 8.2
+    environment:
+      APP_ENV: "prod"
+      APP_DEBUG: 0
+
+  php-cli:
+    build:
+      context: ./api/docker
+      dockerfile: production/php-cli/Dockerfile
+      args:
+        PHP_VERSION: 8.2
+        COMPOSER_VERSION: 2.5.4
+    environment:
+      APP_ENV: "prod"
+      APP_DEBUG: 0
