@@ -1,0 +1,18 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+          http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Shared\Domain\Entity\Recipe\Item" table="recipe_items">
+        <id name="id" type="uuid" column="id">
+            <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
+        </id>
+        <many-to-one field="recipe" target-entity="App\Shared\Domain\Entity\Recipe\Recipe">
+            <join-column nullable="false"/>
+        </many-to-one>
+        <many-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit">
+            <join-column nullable="false"/>
+        </many-to-one>
+        <field name="quantity" column="quantity" type="integer"/>
+        <field name="createdAt" type="datetime_immutable" column="created_at"/>
+    </entity>
+</doctrine-mapping>
