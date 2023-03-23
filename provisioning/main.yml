@@ -1,0 +1,7 @@
+---
+- name: Provision manager
+  hosts: all
+  roles:
+    - swap
+    - docker
+    - certbot
