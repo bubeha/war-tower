@@ -18,9 +18,6 @@ services:
       - traefik.docker.network=traefik-public
 
   api:
-    build:
-      context: ./api/docker
-      dockerfile: development/nginx/Dockerfile
     volumes:
       - "./api:/application"
     networks:
@@ -34,46 +31,22 @@ services:
       - traefik.http.services.api.loadBalancer.server.port=80
 
   php-fpm:
-    build:
-      context: ./api/docker
-      dockerfile: development/php-fpm/Dockerfile
-      args:
-        PHP_VERSION: 8.2
-        XDEBUG_VERSION: 3.2.0
-        COMPOSER_VERSION: 2.5.4
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"
     environment:
-      PHP_IDE_CONFIG: "serverName=docker"
-      APP_ENV: "dev"
-      APP_DEBUG: 1
       APP_SECRET: "$APP_SECRET"
       DATABASE_URL: "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?serverVersion=15&charset=utf8"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   php-cli:
-    build:
-      context: ./api/docker
-      dockerfile: development/php-cli/Dockerfile
-      args:
-        PHP_VERSION: 8.2
-        XDEBUG_VERSION: 3.2.0
-        COMPOSER_VERSION: 2.5.4
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"
       - "~/.config/composer:/.config/composer"
       - "~/.cache/composer:/.cache/composer"
     environment:
-      PHP_IDE_CONFIG: "serverName=docker"
-      APP_ENV: "dev"
-      APP_DEBUG: 1
       APP_SECRET: "$APP_SECRET"
       DATABASE_URL: "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?serverVersion=15&charset=utf8"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   postgres:
     image: "postgres:15.2-alpine"

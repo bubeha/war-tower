@@ -1,13 +1,25 @@
-DOCKER_COMPOSE = docker-compose -f docker-compose.yml
+include .env
+
+ifndef APP_ENV
+APP_ENV=prod
+endif
+
+DOCKER_COMPOSE = docker compose -f docker-compose.yml -f environments/$(APP_ENV)/docker-compose.yml
 CURRENT_DIRECTORY = $(shell pwd)
 
 init:
 	$(DOCKER_COMPOSE) build --pull
+ifeq ($(APP_ENV), prod)
+	$(DOCKER_COMPOSE) run --rm php-cli composer install --no-dev
+else
 	$(DOCKER_COMPOSE) run --rm php-cli composer install
+endif
 	$(DOCKER_COMPOSE) up -d
 	$(DOCKER_COMPOSE) run --rm php-cli wait-for-it postgres:5432 -t 60
 	$(DOCKER_COMPOSE) run --rm php-cli bin/console d:m:m --no-interaction
+ifneq ($(APP_ENV), prod)
 	$(DOCKER_COMPOSE) run --rm php-cli bin/console d:f:l --no-interaction
+endif
 
 down:
 	$(DOCKER_COMPOSE) down --remove-orphans
