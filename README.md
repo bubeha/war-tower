@@ -6,7 +6,6 @@ Make .env file and fill it
 
 ```bash 
 cp ./.env.example ./.env
-cp ./api/.env ./api/.env.local
 ```
 
 ### First start
