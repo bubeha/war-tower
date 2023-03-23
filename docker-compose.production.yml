@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  php-fpm:
+    environment:
+      APP_ENV: "prod"
+      APP_DEBUG: 0
+
+  php-cli:
+    environment:
+      APP_ENV: "prod"
+      APP_DEBUG: 0

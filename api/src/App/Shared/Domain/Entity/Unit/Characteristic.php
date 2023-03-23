@@ -7,7 +7,10 @@ namespace App\Shared\Domain\Entity\Unit;
 use App\Shared\Domain\Entity\Characteristic as MainCharacteristic;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 
-final class Characteristic
+/**
+ * @final
+ */
+class Characteristic
 {
     public function __construct(private readonly Uuid $id, private readonly Unit $unit, private readonly MainCharacteristic $characteristic, private int $value)
     {

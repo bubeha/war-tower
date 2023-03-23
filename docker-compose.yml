@@ -47,6 +47,7 @@ services:
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
       APP_ENV: "dev"
+      APP_DEBUG: 1
       APP_SECRET: "$APP_SECRET"
       DATABASE_URL: "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?serverVersion=15&charset=utf8"
     extra_hosts:
@@ -68,6 +69,7 @@ services:
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
       APP_ENV: "dev"
+      APP_DEBUG: 1
       APP_SECRET: "$APP_SECRET"
       DATABASE_URL: "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?serverVersion=15&charset=utf8"
     extra_hosts:
