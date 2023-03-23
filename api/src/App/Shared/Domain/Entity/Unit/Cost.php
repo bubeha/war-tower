@@ -15,6 +15,11 @@ class Cost
     {
     }
 
+    public static function create(Uuid $id, Unit $unit, int $cost): self
+    {
+        return new self($id, $unit, $cost);
+    }
+
     public function getId(): Uuid
     {
         return $this->id;

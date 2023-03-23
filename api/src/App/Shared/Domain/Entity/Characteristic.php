@@ -12,14 +12,16 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
  */
 class Characteristic
 {
-    private readonly DateTime $createdAt;
+    public function __construct(private readonly Uuid $id, private string $name, private readonly DateTime $createdAt)
+    {
+    }
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public function __construct(private readonly Uuid $id, private string $name, ?DateTime $createdAt = null)
+    public static function create(Uuid $uuid, string $name, ?DateTime $createdAt = null): self
     {
-        $this->createdAt = $createdAt ?? DateTime::now();
+        return new self($uuid, $name, $createdAt ?? DateTime::now());
     }
 
     public function getId(): Uuid
