@@ -1,9 +1,32 @@
 nelmio_api_doc:
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
   documentation:
     info:
       title: War Tower API
       description: Design Document for the API
       version: 0.0.1
-  areas: # to filter documented areas
-    path_patterns:
-      - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+
+    components:
+      responses:
+        categories:
+          description: Categories List
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: "#/components/schemas/CategoryView"
+
+      schemas:
+        CategoryView:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 'unique_id'
+            name:
+              type: string
+              example: 'Some Mane'
