@@ -87,3 +87,22 @@ nelmio_api_doc:
               type: string
               format: data-time
               example: "2020-09-25 15:49:31"
+            characteristics:
+              type: array
+              items:
+                type: object
+                $ref: "#/components/schemas/CharacteristicView"
+
+
+        CharacteristicView:
+          type: object
+          properties:
+            key:
+              type: string
+              example: 'some_key'
+            name:
+              type: string
+              example: 'Characteristic Name'
+            value:
+              type: integer
+              example: 100

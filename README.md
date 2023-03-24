@@ -35,3 +35,9 @@ To close the application you must run the script
 ```bash
 make down
 ```
+
+### Open Api Documentation with Swagger UI
+Open your browser and visit localhost: **[api.localhost/api/doc](http://api.localhost/api/doc)**.
+
+### Open Api Documentation with JSON format
+Open your browser and visit localhost: **[api.localhost/api/doc.json](http://api.localhost/api/doc.json)**.
