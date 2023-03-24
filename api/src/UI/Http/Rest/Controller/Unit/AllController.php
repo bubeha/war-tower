@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UI\Http\Rest\Controller;
+namespace UI\Http\Rest\Controller\Unit;
 
 use App\Shared\Domain\Entity\Category;
 use App\Shared\Domain\Entity\Unit\Cost;
@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use UI\Http\Rest\Response\OpenApi;
 
-final class AllUnitsController
+final class AllController
 {
     #[Route('/units', name: 'all_units')]
     public function __invoke(GetAllUnits $repository, SerializerInterface $serializer): OpenApi
