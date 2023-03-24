@@ -84,4 +84,9 @@ class Unit
     {
         return $this->characteristics;
     }
+
+    public function setCharacteristics(Collection $characteristics): void
+    {
+        $this->characteristics = $characteristics;
+    }
 }
