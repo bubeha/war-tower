@@ -10,6 +10,7 @@
         <many-to-one field="category" target-entity="App\Shared\Domain\Entity\Category">
             <join-column nullable="false"/>
         </many-to-one>
+        <one-to-many field="characteristics" target-entity="App\Shared\Domain\Entity\Unit\Characteristic" mapped-by="unit" />
         <field name="slug" type="slug" column="slug" unique="true"/>
         <field name="name" type="string" column="name"/>
         <field name="createdAt" type="datetime_immutable" column="created_at"/>

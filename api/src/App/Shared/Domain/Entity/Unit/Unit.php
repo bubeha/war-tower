@@ -8,6 +8,8 @@ use App\Shared\Domain\Entity\Category;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @final
@@ -21,6 +23,7 @@ class Unit
         private string $name,
         private readonly DateTime $createdAt,
         private null|Cost $cost = null,
+        private readonly Collection $characteristics = new ArrayCollection([]),
     ) {
     }
 
@@ -75,5 +78,10 @@ class Unit
     public function setCost(Cost $cost): void
     {
         $this->cost = $cost;
+    }
+
+    public function getCharacteristics(): Collection
+    {
+        return $this->characteristics;
     }
 }

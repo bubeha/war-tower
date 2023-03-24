@@ -6,8 +6,8 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <many-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit">
-            <join-column nullable="false"/>
+        <many-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit" inversed-by="characteristics">
+            <join-column name="unit_id" referenced-column-name="id" nullable="false"/>
         </many-to-one>
         <many-to-one field="characteristic" target-entity="App\Shared\Domain\Entity\Characteristic">
             <join-column nullable="false"/>

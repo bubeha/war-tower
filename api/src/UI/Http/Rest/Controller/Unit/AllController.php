@@ -10,6 +10,7 @@ use App\Shared\Domain\Repository\Unit\FindAll;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
+use Doctrine\Common\Collections\Collection;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -35,6 +36,7 @@ final class AllController
                 'slug',
                 'createdAt',
                 'cost',
+                'characteristics',
             ],
             AbstractNormalizer::CALLBACKS => [
                 'id' => static fn (Uuid $value): string => $value->toString(),
@@ -42,6 +44,23 @@ final class AllController
                 'slug' => static fn (Slug $value): string => $value->toString(),
                 'createdAt' => static fn (DateTime $value): string => $value->toString(),
                 'cost' => static fn (null|Cost $cost): float => $cost ? ($cost->getCost() / 100) : 0.0,
+                'characteristics' => static function (Collection $collection) {
+                    $result = [];
+                    /** @var list<\App\Shared\Domain\Entity\Unit\Characteristic> $items */
+                    $items = $collection->getValues();
+
+                    foreach ($items as $item) {
+                        $characteristic = $item->getCharacteristic();
+
+                        $result[] = [
+                            'key' => $characteristic->getId(),
+                            'name' => $characteristic->getName(),
+                            'value' => $item->getValue(),
+                        ];
+                    }
+
+                    return $result;
+                },
             ],
         ]);
 
