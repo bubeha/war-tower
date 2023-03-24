@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Shared\Domain\Entity;
 
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Id\Uuid;
 
 /**
  * @final
@@ -13,7 +12,7 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 class Category
 {
     public function __construct(
-        private Uuid $id,
+        private readonly string $id,
         private string $name,
         private readonly DateTime $createdAt,
     ) {
@@ -22,7 +21,7 @@ class Category
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, string $name, ?DateTime $createdAt = null): self
+    public static function create(string $id, string $name, ?DateTime $createdAt = null): self
     {
         return new self(
             $id,
@@ -36,7 +35,7 @@ class Category
         $this->name = $name;
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }
@@ -49,10 +48,5 @@ class Category
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
-    }
-
-    public function setId(Uuid $id): void
-    {
-        $this->id = $id;
     }
 }

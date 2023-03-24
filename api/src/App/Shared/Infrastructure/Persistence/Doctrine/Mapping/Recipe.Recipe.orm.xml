@@ -3,9 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
           http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <entity name="App\Shared\Domain\Entity\Recipe\Recipe" table="recipes">
-        <id name="id" type="uuid" column="id">
-            <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
-        </id>
+        <id name="id" type="string" column="id" length="15"/>
         <field name="name" column="name" type="string" unique="true"/>
         <one-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit">
             <join-column nullable="false"/>

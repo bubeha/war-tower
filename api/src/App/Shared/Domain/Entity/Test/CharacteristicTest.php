@@ -6,7 +6,7 @@ namespace App\Shared\Domain\Entity\Test;
 
 use App\Shared\Domain\Entity\Characteristic;
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Id\Uuid;
+use Exception;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertSame;
@@ -18,12 +18,13 @@ final class CharacteristicTest extends TestCase
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
+     * @throws Exception
      */
     public function testCharacteristicCreate(): void
     {
         $faker = Factory::create();
 
-        $id = Uuid::generate();
+        $id = \random_bytes(\random_int(5, 15));
         $name = $faker->name();
         $createdAt = DateTime::now();
 
@@ -35,12 +36,13 @@ final class CharacteristicTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
+     * @throws Exception
      */
     public function testCharacteristicUpdate(): void
     {
         $faker = Factory::create();
 
-        $id = Uuid::generate();
+        $id = \random_bytes(\random_int(5, 15));
         $name = $faker->name();
         $createdAt = DateTime::now();
 

@@ -33,6 +33,13 @@ final class UnitFixture extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+    public function getDependencies(): array
+    {
+        return [
+            CategoryFixture::class,
+        ];
+    }
+
     /**
      * @return list<Unit>
      * @throws \App\Shared\Domain\Exception\DateTimeException
@@ -41,19 +48,19 @@ final class UnitFixture extends Fixture implements DependentFixtureInterface
     {
         $result = [];
 
-        foreach ($this->categoryRepository->all() as $index => $category) {
+        foreach ($this->categoryRepository->all() as $category) {
             foreach (\range(1, 4) as $value) {
-                $result[] = Unit::create(Uuid::generate(), $category, Slug::fromString(\strtolower($category->getName()) . '-' . ($index + 1) . '-component-' . $value), "Component {$value}");
+                $name = "Component {$value}";
+
+                $result[] = Unit::create(
+                    Uuid::generate(),
+                    $category,
+                    Slug::fromArray($category->getName(), $name),
+                    $name,
+                );
             }
         }
 
         return $result;
-    }
-
-    public function getDependencies(): array
-    {
-        return [
-            CategoryFixture::class,
-        ];
     }
 }

@@ -6,7 +6,6 @@ namespace App\Shared\Domain\Entity\Recipe;
 
 use App\Shared\Domain\Entity\Unit\Unit;
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Id\Uuid;
 
 /**
  * @final
@@ -14,7 +13,7 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 class Recipe
 {
     public function __construct(
-        private readonly Uuid $id,
+        private readonly string $id,
         private string $name,
         private Unit $unit,
         private readonly DateTime $createdAt,
@@ -24,7 +23,7 @@ class Recipe
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
      */
-    public static function create(Uuid $id, string $name, Unit $unit, ?DateTime $createdAt = null): self
+    public static function create(string $id, string $name, Unit $unit, ?DateTime $createdAt = null): self
     {
         return new self(
             $id,
@@ -34,7 +33,7 @@ class Recipe
         );
     }
 
-    public function getId(): Uuid
+    public function getId(): string
     {
         return $this->id;
     }

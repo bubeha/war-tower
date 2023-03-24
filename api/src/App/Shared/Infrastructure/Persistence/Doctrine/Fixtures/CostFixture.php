@@ -10,6 +10,7 @@ use App\Shared\Infrastructure\Persistence\ReadModel\Unit\GetAllUnits;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Exception;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -32,26 +33,26 @@ final class CostFixture extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
+    public function getDependencies(): array
+    {
+        return [
+            UnitFixture::class,
+        ];
+    }
+
     /**
      * @return list<\App\Shared\Domain\Entity\Unit\Cost>
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     private function getData(): array
     {
         $result = [];
 
         foreach ($this->unitRepository->all() as $unit) {
-            $result[] = Cost::create(Uuid::generate(), $unit, random_int(1, 1_000_000));
+            $result[] = Cost::create(Uuid::generate(), $unit, \random_int(1, 1_000_000));
         }
 
         return $result;
-    }
-
-    public function getDependencies(): array
-    {
-        return [
-            UnitFixture::class,
-        ];
     }
 }
