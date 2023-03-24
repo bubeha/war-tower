@@ -23,7 +23,7 @@ class Unit
         private string $name,
         private readonly DateTime $createdAt,
         private null|Cost $cost = null,
-        private readonly Collection $characteristics = new ArrayCollection([]),
+        private Collection $characteristics = new ArrayCollection([]),
     ) {
     }
 
