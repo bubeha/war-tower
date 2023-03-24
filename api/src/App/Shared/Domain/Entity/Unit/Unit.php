@@ -20,6 +20,7 @@ class Unit
         private Slug $slug,
         private string $name,
         private readonly DateTime $createdAt,
+        private null|Cost $cost = null,
     ) {
     }
 
@@ -64,5 +65,15 @@ class Unit
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getCost(): null|Cost
+    {
+        return $this->cost;
+    }
+
+    public function setCost(Cost $cost): void
+    {
+        $this->cost = $cost;
     }
 }

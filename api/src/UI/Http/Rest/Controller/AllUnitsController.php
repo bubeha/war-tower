@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace UI\Http\Rest\Controller;
 
 use App\Shared\Domain\Entity\Category;
+use App\Shared\Domain\Entity\Unit\Cost;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
@@ -27,12 +28,14 @@ final class AllUnitsController
                 'name',
                 'slug',
                 'createdAt',
+                'cost',
             ],
             AbstractNormalizer::CALLBACKS => [
                 'id' => static fn (Uuid $value): string => $value->toString(),
                 'category' => static fn (Category $category): string => $category->getName(),
                 'slug' => static fn (Slug $value): string => $value->toString(),
                 'createdAt' => static fn (DateTime $value): string => $value->toString(),
+                'cost' => static fn (null|Cost $cost): float => $cost ? ($cost->getCost() / 100) : 0.0,
             ],
         ]);
 

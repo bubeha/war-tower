@@ -6,6 +6,7 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
+        <one-to-one field="cost" target-entity="App\Shared\Domain\Entity\Unit\Cost" mapped-by="unit" />
         <many-to-one field="category" target-entity="App\Shared\Domain\Entity\Category">
             <join-column nullable="false"/>
         </many-to-one>

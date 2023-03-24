@@ -6,8 +6,8 @@
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <one-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit">
-            <join-column nullable="false"/>
+        <one-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit" inversed-by="cost">
+            <join-column name="unit_id" nullable="false" referenced-column-name="id"/>
         </one-to-one>
         <field name="cost" type="integer" column="value"/>
     </entity>
