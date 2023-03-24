@@ -6,7 +6,6 @@ namespace App\Shared\Domain\Entity\Test;
 
 use App\Shared\Domain\Entity\Category;
 use App\Shared\Domain\ValueObject\DateTime;
-use App\Shared\Domain\ValueObject\Id\Uuid;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +20,7 @@ final class CategoryTest extends TestCase
      */
     public function testCategoryCreate(): void
     {
-        $id = Uuid::generate();
+        $id = \random_bytes(\random_int(5, 15));
         $date = DateTime::now();
         $name = $this->generateString();
 
@@ -38,7 +37,7 @@ final class CategoryTest extends TestCase
      */
     public function testModifyCategory(): void
     {
-        $id = Uuid::generate();
+        $id = \random_bytes(\random_int(5, 15));
 
         $category = Category::create($id, $this->generateString());
 

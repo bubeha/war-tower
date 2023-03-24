@@ -2,17 +2,17 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
           http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Shared\Domain\Entity\Unit\Unit" table="units">
+    <entity name="App\Shared\Domain\Entity\Recipe\Item" table="recipe_items">
         <id name="id" type="uuid" column="id">
             <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
         </id>
-        <one-to-one field="cost" target-entity="App\Shared\Domain\Entity\Unit\Cost" mapped-by="unit" />
-        <many-to-one field="category" target-entity="App\Shared\Domain\Entity\Category">
+        <many-to-one field="recipe" target-entity="App\Shared\Domain\Entity\Recipe\Recipe">
             <join-column nullable="false"/>
         </many-to-one>
-        <one-to-many field="characteristics" target-entity="App\Shared\Domain\Entity\Unit\Characteristic" mapped-by="unit" />
-        <field name="slug" type="slug" column="slug" unique="true"/>
-        <field name="name" type="string" column="name"/>
+        <many-to-one field="unit" target-entity="App\Shared\Domain\Entity\Unit\Unit">
+            <join-column nullable="false"/>
+        </many-to-one>
+        <field name="quantity" column="quantity" type="integer"/>
         <field name="createdAt" type="datetime_immutable" column="created_at"/>
     </entity>
 </doctrine-mapping>

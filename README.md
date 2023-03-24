@@ -35,11 +35,3 @@ To close the application you must run the script
 ```bash
 make down
 ```
-
-## Routes
-
-| Method                                               | Route                                              | Description      |
-|------------------------------------------------------|----------------------------------------------------|------------------|
-| GET | [/api/recipes](http://api.localhost/api/recipes)   | get all recipes  |
-| GET | [/api/products](http://api.localhost/api/products) | get all products |
-

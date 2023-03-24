@@ -1,0 +1,89 @@
+nelmio_api_doc:
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+  documentation:
+    info:
+      title: War Tower API
+      description: Design Document for the API
+      version: 0.0.1
+
+    components:
+      responses:
+        allCategories:
+          description: Categories List
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: "#/components/schemas/CategoryView"
+
+        currentUser:
+          description: Current User Response
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/UserView"
+
+        units:
+          description: Units List
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: "#/components/schemas/UnitView"
+
+      schemas:
+        CategoryView:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 'unique_id'
+            name:
+              type: string
+              example: 'Some Name'
+
+        UserView:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 7be33fd4-ff46-11ea-adc1-0242ac120002
+            name:
+              type: string
+              example: 'Some Name'
+            nickname:
+              type: string
+              example: 'NickName'
+            email:
+              type: string
+              example: 'some@email-example.com'
+
+        UnitView:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 7be33fd4-ff46-11ea-adc1-0242ac120002
+            category:
+              type: string
+              example: 'Category Name'
+            slug:
+              type: string
+              example: 'some_slug'
+            name:
+              type: string
+              example: 'Component #1'
+            cost:
+              type: float
+              example: '100.50'
+            createdAt:
+              type: string
+              format: data-time
+              example: "2020-09-25 15:49:31"

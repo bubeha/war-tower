@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Persistence\ReadModel\User;
+namespace App\Shared\Domain\Repository\User;
 
 use App\Shared\Domain\Entity\User;
 

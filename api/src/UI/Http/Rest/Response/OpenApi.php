@@ -20,9 +20,9 @@ final class OpenApi extends JsonResponse
         $this->charset = $charset;
     }
 
-    public static function fromPayload(mixed $payload, int $status, array $header = []): self
+    public static function fromPayload(mixed $payload, int $status, array $header = [], bool $json = false): self
     {
-        return new self($payload, $status, $header);
+        return new self($payload, $status, $header, $json);
     }
 
     public static function empty(int $status): self
