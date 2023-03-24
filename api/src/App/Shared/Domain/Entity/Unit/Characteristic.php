@@ -16,6 +16,11 @@ class Characteristic
     {
     }
 
+    public static function create(Uuid $id, Unit $unit, MainCharacteristic $characteristic, int $value): self
+    {
+        return new self($id, $unit, $characteristic, $value);
+    }
+
     public function getId(): Uuid
     {
         return $this->id;
