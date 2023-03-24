@@ -6,10 +6,10 @@ namespace UI\Http\Rest\Controller\Unit;
 
 use App\Shared\Domain\Entity\Category;
 use App\Shared\Domain\Entity\Unit\Cost;
+use App\Shared\Domain\Repository\Unit\FindAll;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
-use App\Shared\Infrastructure\Persistence\ReadModel\Unit\GetAllUnits;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -26,7 +26,7 @@ final class AllController
         response: 200,
     )]
     #[OA\Tag(name: 'units')]
-    public function __invoke(GetAllUnits $repository, SerializerInterface $serializer): OpenApi
+    public function __invoke(FindAll $repository, SerializerInterface $serializer): OpenApi
     {
         $output = $serializer->serialize($repository->all(), JsonEncoder::FORMAT, [
             AbstractNormalizer::ATTRIBUTES => [

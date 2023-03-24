@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Persistence\ReadModel\User;
 
 use App\Shared\Domain\Entity\User;
+use App\Shared\Domain\Repository\User\GetCurrentUser;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 use Doctrine\ORM\EntityManagerInterface;
 

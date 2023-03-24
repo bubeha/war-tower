@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller\Category;
 
-use App\Shared\Infrastructure\Persistence\ReadModel\Category\GetAllCategories;
+use App\Shared\Domain\Repository\Category\FindAll;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -21,7 +21,7 @@ final class AllController
         description: 'Returns all categories',
     )]
     #[OA\Tag(name: 'categories')]
-    public function __invoke(GetAllCategories $repository, SerializerInterface $serializer): OpenApi
+    public function __invoke(FindAll $repository, SerializerInterface $serializer): OpenApi
     {
         $output = $serializer->serialize($repository->all(), JsonEncoder::FORMAT, [
             AbstractNormalizer::ATTRIBUTES => [

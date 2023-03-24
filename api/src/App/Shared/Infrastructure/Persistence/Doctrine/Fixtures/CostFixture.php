@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
 use App\Shared\Domain\Entity\Unit\Cost;
+use App\Shared\Domain\Repository\Unit\FindAll;
 use App\Shared\Domain\ValueObject\Id\Uuid;
-use App\Shared\Infrastructure\Persistence\ReadModel\Unit\GetAllUnits;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -17,7 +17,7 @@ use Exception;
  */
 final class CostFixture extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private readonly GetAllUnits $unitRepository)
+    public function __construct(private readonly FindAll $unitRepository)
     {
     }
 

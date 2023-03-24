@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Shared\Infrastructure\Persistence\Doctrine\Fixtures;
 
 use App\Shared\Domain\Entity\Unit\Unit;
+use App\Shared\Domain\Repository\Category\FindAll;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
-use App\Shared\Infrastructure\Persistence\ReadModel\Category\GetAllCategories;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -17,7 +17,7 @@ use Doctrine\Persistence\ObjectManager;
  */
 final class UnitFixture extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private readonly GetAllCategories $categoryRepository)
+    public function __construct(private readonly FindAll $categoryRepository)
     {
     }
 
