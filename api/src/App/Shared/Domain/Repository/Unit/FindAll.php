@@ -11,5 +11,4 @@ use App\Shared\Domain\Repository\FindAll as BaseFindAll;
  */
 interface FindAll extends BaseFindAll
 {
-
 }

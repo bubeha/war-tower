@@ -17,7 +17,6 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use UI\Http\Rest\Response\OpenApi;
 
-
 final class AllController
 {
     #[Route('/units', name: 'all_units', methods: ['GET'])]
@@ -38,11 +37,11 @@ final class AllController
                 'cost',
             ],
             AbstractNormalizer::CALLBACKS => [
-                'id' => static fn(Uuid $value): string => $value->toString(),
-                'category' => static fn(Category $category): string => $category->getName(),
-                'slug' => static fn(Slug $value): string => $value->toString(),
-                'createdAt' => static fn(DateTime $value): string => $value->toString(),
-                'cost' => static fn(null|Cost $cost): float => $cost ? ($cost->getCost() / 100) : 0.0,
+                'id' => static fn (Uuid $value): string => $value->toString(),
+                'category' => static fn (Category $category): string => $category->getName(),
+                'slug' => static fn (Slug $value): string => $value->toString(),
+                'createdAt' => static fn (DateTime $value): string => $value->toString(),
+                'cost' => static fn (null|Cost $cost): float => $cost ? ($cost->getCost() / 100) : 0.0,
             ],
         ]);
 

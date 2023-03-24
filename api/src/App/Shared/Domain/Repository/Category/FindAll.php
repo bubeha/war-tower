@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Shared\Domain\Repository\Category;
 
-
 use App\Shared\Domain\Repository\FindAll as BaseFindAll;
 
 /**
@@ -12,5 +11,4 @@ use App\Shared\Domain\Repository\FindAll as BaseFindAll;
  */
 interface FindAll extends BaseFindAll
 {
-
 }
