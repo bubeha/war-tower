@@ -12,6 +12,7 @@
         "doctrine/migrations": "^3.6",
         "doctrine/orm": "^2.14",
         "nelmio/api-doc-bundle": "^4.11",
+        "symfony/asset": "6.2.*",
         "symfony/console": "6.2.*",
         "symfony/dotenv": "6.2.*",
         "symfony/flex": "^2",
@@ -21,8 +22,11 @@
         "symfony/proxy-manager-bridge": "6.2.*",
         "symfony/runtime": "6.2.*",
         "symfony/serializer": "6.2.*",
+        "symfony/twig-bundle": "6.2.*",
         "symfony/uid": "6.2.*",
-        "symfony/yaml": "6.2.*"
+        "symfony/yaml": "6.2.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
         "dg/bypass-finals": "^1.4",
