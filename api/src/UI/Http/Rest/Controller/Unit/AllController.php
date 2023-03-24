@@ -18,7 +18,7 @@ use UI\Http\Rest\Response\OpenApi;
 
 final class AllController
 {
-    #[Route('/units', name: 'all_units')]
+    #[Route('/units', name: 'all_units', methods: ['GET'])]
     public function __invoke(GetAllUnits $repository, SerializerInterface $serializer): OpenApi
     {
         $output = $serializer->serialize($repository->all(), JsonEncoder::FORMAT, [

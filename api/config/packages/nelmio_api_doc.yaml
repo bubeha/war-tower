@@ -10,7 +10,7 @@ nelmio_api_doc:
 
     components:
       responses:
-        categories:
+        allCategories:
           description: Categories List
           content:
             application/json:
@@ -19,6 +19,14 @@ nelmio_api_doc:
                 items:
                   type: object
                   $ref: "#/components/schemas/CategoryView"
+
+        currentUser:
+          description: Current User Response
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/UserView"
 
       schemas:
         CategoryView:
@@ -29,4 +37,20 @@ nelmio_api_doc:
               example: 'unique_id'
             name:
               type: string
-              example: 'Some Mane'
+              example: 'Some Name'
+
+        UserView:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 7be33fd4-ff46-11ea-adc1-0242ac120002
+            name:
+              type: string
+              example: 'Some Name'
+            nickname:
+              type: string
+              example: 'NickName'
+            email:
+              type: string
+              example: 'some@email-example.com'

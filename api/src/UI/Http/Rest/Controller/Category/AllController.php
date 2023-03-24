@@ -16,9 +16,9 @@ final class AllController
 {
     #[Route('/categories', name: 'all_categories', methods: ['GET'])]
     #[OA\Response(
-        ref: "#/components/responses/categories",
+        ref: '#/components/responses/allCategories',
         response: 200,
-        description: 'Returns all categories'
+        description: 'Returns all categories',
     )]
     #[OA\Tag(name: 'categories')]
     public function __invoke(GetAllCategories $repository, SerializerInterface $serializer): OpenApi
