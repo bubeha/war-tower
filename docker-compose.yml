@@ -34,9 +34,11 @@ services:
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"
+      - "/tmp/xdebug:/tmp/xdebug"
     environment:
-      APP_SECRET: "$APP_SECRET"
-      DATABASE_URL: "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?serverVersion=15&charset=utf8"
+      XDEBUG_MODE: "${XDEBUG_MODE}"
+      APP_SECRET: "${APP_SECRET}"
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?serverVersion=15&charset=utf8"
 
   php-cli:
     user: "$_UID:$_GID"
@@ -44,16 +46,18 @@ services:
       - "./api:/application"
       - "~/.config/composer:/.config/composer"
       - "~/.cache/composer:/.cache/composer"
+      - "/tmp/xdebug:/tmp/xdebug"
     environment:
-      APP_SECRET: "$APP_SECRET"
-      DATABASE_URL: "postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?serverVersion=15&charset=utf8"
+      XDEBUG_MODE: "${XDEBUG_MODE}"
+      APP_SECRET: "${APP_SECRET}"
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?serverVersion=15&charset=utf8"
 
   postgres:
     image: "postgres:15.2-alpine"
     environment:
-      - "POSTGRES_USER=$POSTGRES_USER"
-      - "POSTGRES_PASSWORD=$POSTGRES_PASSWORD"
-      - "POSTGRES_DB=$POSTGRES_DB"
+      - "POSTGRES_USER=${POSTGRES_USER}"
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+      - "POSTGRES_DB=${POSTGRES_DB}"
     ports:
       - "5432:5432"
     volumes:

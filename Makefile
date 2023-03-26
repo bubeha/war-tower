@@ -27,6 +27,9 @@ down:
 start:
 	$(DOCKER_COMPOSE) up -d --remove-orphans --force-recreate --build
 
+profile:
+	XDEBUG_MODE=profile $(DOCKER_COMPOSE) up -d --remove-orphans --force-recreate --build
+
 stop:
 	$(DOCKER_COMPOSE) stop
 
