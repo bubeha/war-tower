@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller\Unit;
 
-use App\Shared\Domain\Entity\Category;
-use App\Shared\Domain\Entity\Unit\Cost;
-use App\Shared\Domain\Repository\Unit\FindAll;
+use App\Game\Domain\Entity\Category;
+use App\Game\Domain\Entity\Unit\Cost;
+use App\Game\Domain\Repository\Unit\FindAll;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
@@ -46,7 +46,7 @@ final class AllController
                 'cost' => static fn (null|Cost $cost): float => $cost ? ($cost->getCost() / 100) : 0.0,
                 'characteristics' => static function (Collection $collection) {
                     $result = [];
-                    /** @var list<\App\Shared\Domain\Entity\Unit\Characteristic> $items */
+                    /** @var list<\App\Game\Domain\Entity\Unit\Characteristic> $items */
                     $items = $collection->getValues();
 
                     foreach ($items as $item) {

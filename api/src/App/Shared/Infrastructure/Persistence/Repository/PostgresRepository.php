@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Persistence\Repository;
 
-use App\Shared\Infrastructure\Persistence\ReadModel\Exception\NotFoundException;
+use App\Game\Infrastructure\ReadModel\Exception\NotFoundException;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -26,7 +26,7 @@ abstract class PostgresRepository
     /**
      * @psalm-param AbstractQuery::HYDRATE_* $hydration
      * @return T
-     * @throws \App\Shared\Infrastructure\Persistence\ReadModel\Exception\NotFoundException|\Doctrine\ORM\NonUniqueResultException
+     * @throws \App\Game\Infrastructure\ReadModel\Exception\NotFoundException|\Doctrine\ORM\NonUniqueResultException
      */
     protected function oneOrException(QueryBuilder $builder, int $hydration = AbstractQuery::HYDRATE_OBJECT)
     {

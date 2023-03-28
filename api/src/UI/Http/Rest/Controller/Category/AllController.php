@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller\Category;
 
-use App\Shared\Domain\Repository\Category\FindAll;
+use App\Game\Domain\Repository\Category\FindAll;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
