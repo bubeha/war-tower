@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Game\Domain\Entity;
 
 use App\Game\Domain\Entity\Characteristic;
 use App\Shared\Domain\ValueObject\DateTime;
+use Exception;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertSame;
@@ -15,7 +18,7 @@ final class CharacteristicTest extends TestCase
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCharacteristicCreate(): void
     {
@@ -33,7 +36,7 @@ final class CharacteristicTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCharacteristicUpdate(): void
     {

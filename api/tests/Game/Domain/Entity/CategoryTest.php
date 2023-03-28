@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Tests\Game\Domain\Entity;
 
 use App\Game\Domain\Entity\Category;
 use App\Shared\Domain\ValueObject\DateTime;
+use Exception;
 use PHPUnit\Framework\TestCase;
-
 
 /**
  * @internal
@@ -14,7 +16,7 @@ final class CategoryTest extends TestCase
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCategoryCreate(): void
     {
@@ -31,7 +33,7 @@ final class CategoryTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws \Exception
+     * @throws Exception
      */
     public function testModifyCategory(): void
     {
@@ -46,7 +48,7 @@ final class CategoryTest extends TestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     private function generateString(): string
     {
