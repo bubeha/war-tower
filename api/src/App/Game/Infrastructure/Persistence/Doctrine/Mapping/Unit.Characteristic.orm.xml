@@ -1,0 +1,17 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+          http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Game\Domain\Entity\Unit\Characteristic" table="unit_characteristics">
+        <id name="id" type="uuid" column="id">
+            <custom-id-generator class="App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator"/>
+        </id>
+        <many-to-one field="unit" target-entity="App\Game\Domain\Entity\Unit\Unit" inversed-by="characteristics">
+            <join-column name="unit_id" referenced-column-name="id" nullable="false"/>
+        </many-to-one>
+        <many-to-one field="characteristic" target-entity="App\Game\Domain\Entity\Characteristic">
+            <join-column nullable="false"/>
+        </many-to-one>
+        <field name="value" type="integer" column="value"/>
+    </entity>
+</doctrine-mapping>

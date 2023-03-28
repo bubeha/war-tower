@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UI\Http\Rest\Controller\User;
 
-use App\Shared\Domain\Repository\User\GetCurrentUser;
+use App\Game\Domain\Repository\User\GetCurrentUser;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

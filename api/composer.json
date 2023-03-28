@@ -44,8 +44,7 @@
         "symfony/css-selector": "6.2.*",
         "symfony/maker-bundle": "^1.48",
         "symfony/phpunit-bridge": "^6.2",
-        "vimeo/psalm": "^5.8",
-        "weirdan/doctrine-psalm-plugin": "^2.8"
+        "vimeo/psalm": "^5.8"
     },
     "config": {
         "allow-plugins": {
