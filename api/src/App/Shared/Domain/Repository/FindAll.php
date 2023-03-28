@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Game\Domain\Repository;
+namespace App\Shared\Domain\Repository;
 
 /**
  * @template T
