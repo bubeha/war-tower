@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Game\Infrastructure\ReadModel\Recipe;
 
-use App\Game\Domain\Entity\Characteristic;
 use App\Game\Domain\Entity\Recipe\Recipe;
 use App\Game\Domain\Repository\Recipe\FindAll;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
