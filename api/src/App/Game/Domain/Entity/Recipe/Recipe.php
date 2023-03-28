@@ -6,6 +6,8 @@ namespace App\Game\Domain\Entity\Recipe;
 
 use App\Game\Domain\Entity\Unit\Unit;
 use App\Shared\Domain\ValueObject\DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @final
@@ -17,6 +19,8 @@ class Recipe
         private string $name,
         private Unit $unit,
         private readonly DateTime $createdAt,
+        /** @var \Doctrine\Common\Collections\Collection<int, \App\Game\Domain\Entity\Recipe\Item> $items */
+        private ?Collection $items = new ArrayCollection(),
     ) {
     }
 
@@ -31,6 +35,24 @@ class Recipe
             $unit,
             $createdAt ?? DateTime::now(),
         );
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection<int, \App\Game\Domain\Entity\Recipe\Item>
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection<int, \App\Game\Domain\Entity\Recipe\Item> $items
+     */
+    public function setItems(Collection $items): static
+    {
+        $this->items = $items;
+
+        return $this;
     }
 
     public function getId(): string

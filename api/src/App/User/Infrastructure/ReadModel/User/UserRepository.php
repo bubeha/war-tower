@@ -31,7 +31,8 @@ final class UserRepository extends PostgresRepository implements GetCurrentUser
         return $this->repository->createQueryBuilder('u')
             ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getOneOrNullResult()
+        ;
     }
 
     protected function getEntityClass(): string
