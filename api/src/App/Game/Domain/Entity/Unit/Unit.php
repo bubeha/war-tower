@@ -10,7 +10,6 @@ use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Domain\ValueObject\Slug;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * @final
@@ -20,13 +19,14 @@ class Unit
     public function __construct(
         private readonly Uuid $id,
         private readonly Category $category,
-        #[SerializedName('key')]
         private Slug $slug,
         private string $name,
         private readonly DateTime $createdAt,
-        private null|Cost $cost = null,
-        private Collection $characteristics = new ArrayCollection([]),
-    ) {
+        private ?Cost $cost = null,
+        /** @var Collection<int, \App\Game\Domain\Entity\Unit\Unit> $characteristics */
+        private ?Collection $characteristics = new ArrayCollection(),
+    )
+    {
     }
 
     /**
@@ -82,11 +82,17 @@ class Unit
         $this->cost = $cost;
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\Collection<int, \App\Game\Domain\Entity\Unit\Unit>
+     */
     public function getCharacteristics(): Collection
     {
         return $this->characteristics;
     }
 
+    /**
+     * @param \Doctrine\Common\Collections\Collection<int, \App\Game\Domain\Entity\Unit\Unit> $characteristics
+     */
     public function setCharacteristics(Collection $characteristics): void
     {
         $this->characteristics = $characteristics;

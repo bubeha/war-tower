@@ -29,7 +29,6 @@ final class CharacteristicFixture extends Fixture
     private function getData(): array
     {
         return [
-            Characteristic::create('cost', 'Cost'),
             Characteristic::create('experience', 'Experience'),
             Characteristic::create('craft_time', 'Craft Time'),
             Characteristic::create('attack', 'Attack'),
