@@ -42,3 +42,20 @@ Accept: application/json
         client.assert(mimeType === 'application/json', `Excepted "application/json" but received "${mimeType}"`);
     })
 %}
+
+###
+GET {{host}}/recipes
+Content-Type: application/json
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", () => {
+        client.assert(response.status === 200, "Response status is not 200")
+    })
+
+    client.test("Response content-type is json", () => {
+        const mimeType = response.contentType.mimeType;
+
+        client.assert(mimeType === 'application/json', `Excepted "application/json" but received "${mimeType}"`);
+    })
+%}

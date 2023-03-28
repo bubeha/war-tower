@@ -6,7 +6,7 @@ namespace App\Game\Infrastructure\ReadModel\Recipe;
 
 use App\Game\Domain\Entity\Characteristic;
 use App\Game\Domain\Entity\Recipe\Recipe;
-use App\Game\Domain\Repository\Characteristic\FindAll;
+use App\Game\Domain\Repository\Recipe\FindAll;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 
 /**
@@ -16,7 +16,7 @@ final class RecipeRepository extends PostgresRepository implements FindAll
 {
     public function all(): array
     {
-        /** @var list<Characteristic> $result */
+        /** @var list<Recipe> $result */
         $result = $this->repository->createQueryBuilder('r')
             ->getQuery()
             ->getResult()
