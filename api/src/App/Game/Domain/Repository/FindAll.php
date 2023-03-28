@@ -10,7 +10,7 @@ namespace App\Game\Domain\Repository;
 interface FindAll
 {
     /**
-     * @return array<int,T>
+     * @return list<T>
      */
     public function all(): array;
 }
