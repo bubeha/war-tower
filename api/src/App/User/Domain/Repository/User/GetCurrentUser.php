@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Game\Domain\Repository\User;
+namespace App\User\Domain\Repository\User;
 
-use App\Game\Domain\Entity\User;
+use App\User\Domain\Entity\User;
 
 interface GetCurrentUser
 {

@@ -2,7 +2,8 @@ doctrine_migrations:
   migrations_paths:
     # namespace is arbitrary but should be different from App\Migrations
     # as migrations classes should NOT be autoloaded
-    'App\Shared\Infrastructure\Persistence\Doctrine\Migrations': '%kernel.project_dir%/src/App/Shared/Infrastructure/Persistence/Doctrine/Migrations'
+    'App\User\Infrastructure\Persistence\Doctrine\Migrations': '%kernel.project_dir%/src/App/User/Infrastructure/Persistence/Doctrine/Migrations'
+    'App\Game\Infrastructure\Persistence\Doctrine\Migrations': '%kernel.project_dir%/src/App/Game/Infrastructure/Persistence/Doctrine/Migrations'
   enable_profiler: '%kernel.debug%'
 
   storage:

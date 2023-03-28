@@ -1,13 +1,10 @@
 <?php
 
-declare(strict_types=1);
+namespace App\Tests\User\Domain\Entity;
 
-namespace App\Game\Domain\Entity\Test;
-
-use App\Game\Domain\Entity\User;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
-use Exception;
+use App\User\Domain\Entity\User;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +15,7 @@ final class UserTest extends TestCase
 {
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws Exception
+     * @throws \Exception
      */
     public function testUserCreate(): void
     {
@@ -42,7 +39,7 @@ final class UserTest extends TestCase
 
     /**
      * @throws \App\Shared\Domain\Exception\DateTimeException
-     * @throws Exception
+     * @throws \Exception
      */
     public function testUserUpdate(): void
     {

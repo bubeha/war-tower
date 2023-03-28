@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Game\Domain\Entity;
+namespace App\User\Domain\Entity;
 
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
