@@ -1,6 +1,6 @@
-# war-tower
+# Api For the Robo Factory Game
 
-### Install
+#### Install
 
 Make .env file and fill it
 
@@ -8,7 +8,7 @@ Make .env file and fill it
 cp ./.env.example ./.env
 ```
 
-### First start
+#### First start
 
 To build the application for the first time you must run the script
 
@@ -18,7 +18,7 @@ make init
 
 Open your browser and visit localhost: **[api.localhost](http://api.localhost)**.
 
-### Run application
+#### Run application
 
 To start the application you must run the script
 
@@ -28,7 +28,7 @@ make start
 
 Open your browser and visit localhost: **[api.localhost](http://api.localhost)**.
 
-### Close application
+#### Close application
 
 To close the application you must run the script
 
@@ -36,8 +36,14 @@ To close the application you must run the script
 make down
 ```
 
-### Open Api Documentation with Swagger UI
+#### Open Api Documentation with Swagger UI
 Open your browser and visit localhost: **[api.localhost/api/doc](http://api.localhost/api/doc)**.
 
-### Open Api Documentation with JSON format
+#### Open Api Documentation with JSON format
 Open your browser and visit localhost: **[api.localhost/api/doc.json](http://api.localhost/api/doc.json)**.
+
+
+# Development:
+### Enable GIT hooks
+```bash
+git config core.hooksPath ./.githooks
