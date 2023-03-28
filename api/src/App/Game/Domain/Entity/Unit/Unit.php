@@ -25,8 +25,7 @@ class Unit
         private ?Cost $cost = null,
         /** @var Collection<int, \App\Game\Domain\Entity\Unit\Unit> $characteristics */
         private ?Collection $characteristics = new ArrayCollection(),
-    )
-    {
+    ) {
     }
 
     /**
