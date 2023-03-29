@@ -7,22 +7,24 @@ namespace UI\Http\Rest\Controller\Unit;
 use App\Game\Domain\Repository\Unit\FindAll;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use UI\Http\Rest\Response\OpenApi;
 
 final class AllController
 {
+    /**
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     */
     #[Route('/units', name: 'all_units', methods: ['GET'])]
     #[OA\Response(
         ref: '#/components/responses/units',
         response: 200,
     )]
     #[OA\Tag(name: 'units')]
-    public function __invoke(FindAll $repository, SerializerInterface $serializer): OpenApi
+    public function __invoke(FindAll $repository, NormalizerInterface $serializer): OpenApi
     {
-        $output = $serializer->serialize($repository->all(), JsonEncoder::FORMAT);
+        $output = $serializer->normalize($repository->all());
 
-        return OpenApi::fromPayload($output, 200, [], true);
+        return OpenApi::fromPayload($output, 200);
     }
 }

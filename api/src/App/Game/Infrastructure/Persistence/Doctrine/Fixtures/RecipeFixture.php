@@ -63,7 +63,7 @@ final class RecipeFixture extends Fixture implements DependentFixtureInterface
 
             /** @var \Doctrine\Common\Collections\Collection<int, Item> $items */
             $items = new ArrayCollection(
-                \array_map(static fn($item) => Item::create(Uuid::generate(), $recipe, $units[$item], \random_int(1, 5)), $randomKeys),
+                \array_map(static fn ($item) => Item::create(Uuid::generate(), $recipe, $units[$item], \random_int(1, 5)), $randomKeys),
             );
             $recipe->setItems($items);
 
