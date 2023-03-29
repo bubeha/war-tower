@@ -9,6 +9,7 @@ use App\Game\Domain\Entity\Recipe\Recipe;
 use App\Game\Domain\Repository\Unit\FindAll;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Exception;
@@ -33,7 +34,6 @@ final class RecipeFixture extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        // todo refactor
         /** @var non-empty-array<int, \App\Game\Domain\Entity\Unit\Unit> $units */
         $units = $this->repository->all();
 
@@ -51,19 +51,9 @@ final class RecipeFixture extends Fixture implements DependentFixtureInterface
             unset($units[$key]);
         }
 
-        $recipes = [];
-
         foreach ($newUnitsRecipe as $key => $unit) {
-            $recipes[] = Recipe::create('recipe-' . $key, ' Recipe: ' . $unit->getName() . $key, $unit);
-        }
+            $recipe = Recipe::create('recipe-' . $key, ' Recipe: ' . $unit->getName() . $key, $unit);
 
-        foreach ($recipes as $recipe) {
-            $manager->persist($recipe);
-        }
-
-        $manager->flush();
-
-        foreach ($recipes as $recipe) {
             /** @var non-empty-array<int, \App\Game\Domain\Entity\Unit\Unit> $units */
             $randomKeys = \array_rand($units, \random_int(2, (int)(\count($units) / 3)));
 
@@ -71,9 +61,11 @@ final class RecipeFixture extends Fixture implements DependentFixtureInterface
                 throw new LogicException('Incorrect length. Expected: ' . $length);
             }
 
-            foreach ($randomKeys as $item) {
-                $manager->persist(Item::create(Uuid::generate(), $recipe, $units[$item], \random_int(1, 5)));
-            }
+            /** @var \Doctrine\Common\Collections\Collection<int, Item> $items */
+            $items = new ArrayCollection(
+                \array_map(static fn($item) => Item::create(Uuid::generate(), $recipe, $units[$item], \random_int(1, 5)), $randomKeys),
+            );
+            $recipe->setItems($items);
 
             $manager->persist($recipe);
         }
