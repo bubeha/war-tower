@@ -8,9 +8,9 @@ use InvalidArgumentException;
 use JsonSerializable;
 use Symfony\Component\Uid\UuidV4;
 
-final class Uuid implements JsonSerializable
+final readonly class Uuid implements JsonSerializable
 {
-    public function __construct(private readonly string $value)
+    public function __construct(private string $value)
     {
         if (UuidV4::isValid($this->value) === false) {
             throw new InvalidArgumentException("Invalid UUID4: {$this->value}");

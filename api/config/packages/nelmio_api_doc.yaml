@@ -38,6 +38,16 @@ nelmio_api_doc:
                   type: object
                   $ref: "#/components/schemas/UnitView"
 
+        recipes:
+          description: Recipes List
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: "#/components/schemas/RecipeView"
+
       schemas:
         CategoryView:
           type: object
@@ -87,12 +97,15 @@ nelmio_api_doc:
               type: string
               format: data-time
               example: "2020-09-25 15:49:31"
-            characteristics:
-              type: array
-              items:
-                type: object
-                $ref: "#/components/schemas/CharacteristicView"
-
+            characteristic1:
+              type: integer
+              example: 1
+            characteristic2:
+              type: integer
+              example: 1
+            characteristicN:
+              type: integer
+              example: 1
 
         CharacteristicView:
           type: object
@@ -106,3 +119,48 @@ nelmio_api_doc:
             value:
               type: integer
               example: 100
+
+        RecipeView:
+          type: object
+          properties:
+            id:
+              type: string
+              example: 7be33fd4-ff46-11ea-adc1-0242ac120002
+            name:
+              type: string
+              example: 'Recipe Component #1'
+            goal:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: 7be33fd4-ff46-11ea-adc1-0242ac120002
+                name:
+                  type: string
+                  example: 'Component #1'
+                key:
+                  type: string
+                  example: 'light_component_1'
+                cost:
+                  type: float
+                  example: 111.1
+            requirements:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 7be33fd4-ff46-11ea-adc1-0242ac120002
+                  name:
+                    type: string
+                    example: 'Component #1'
+                  key:
+                    type: string
+                    example: 'light_component_1'
+                  cost:
+                    type: float
+                    example: 111.1
+                  quantity:
+                    type: integer
+                    example: 1

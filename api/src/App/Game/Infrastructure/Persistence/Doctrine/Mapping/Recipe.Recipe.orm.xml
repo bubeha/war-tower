@@ -8,6 +8,12 @@
         <one-to-one field="unit" target-entity="App\Game\Domain\Entity\Unit\Unit">
             <join-column nullable="false"/>
         </one-to-one>
+        <one-to-many field="items" target-entity="App\Game\Domain\Entity\Recipe\Item" mapped-by="recipe">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
         <field name="createdAt" type="datetime_immutable" column="created_at"/>
     </entity>
 </doctrine-mapping>

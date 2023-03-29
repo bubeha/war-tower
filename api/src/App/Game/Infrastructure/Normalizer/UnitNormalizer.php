@@ -7,9 +7,9 @@ namespace App\Game\Infrastructure\Normalizer;
 use App\Game\Domain\Entity\Unit\Unit;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class UnitNormalizer implements NormalizerInterface
+final class UnitNormalizer implements NormalizerInterface
 {
-    public function normalize(mixed $object, string $format = null, array $context = []): array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): array
     {
         /** @var Unit $object */
         $result = [
@@ -28,7 +28,7 @@ class UnitNormalizer implements NormalizerInterface
         return $result;
     }
 
-    public function supportsNormalization(mixed $data, string $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null): bool
     {
         return $data instanceof Unit;
     }

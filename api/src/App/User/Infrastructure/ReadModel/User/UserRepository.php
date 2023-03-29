@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Game\Infrastructure\ReadModel\User;
+namespace App\User\Infrastructure\ReadModel\User;
 
-use App\Game\Domain\Entity\User;
-use App\Game\Domain\Repository\User\GetCurrentUser;
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
+use App\User\Domain\Entity\User;
+use App\User\Domain\Repository\User\GetCurrentUser;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**

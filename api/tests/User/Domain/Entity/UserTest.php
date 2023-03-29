@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Game\Domain\Entity\Test;
+namespace App\Tests\User\Domain\Entity;
 
-use App\Game\Domain\Entity\User;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
+use App\User\Domain\Entity\User;
 use Exception;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;

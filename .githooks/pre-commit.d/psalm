@@ -1,0 +1,2 @@
+#!/bin/bash
+docker-compose run --rm --no-deps php-cli composer run psalm -- $1

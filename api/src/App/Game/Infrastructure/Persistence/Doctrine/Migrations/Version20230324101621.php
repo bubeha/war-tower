@@ -40,10 +40,6 @@ final class Version20230324101621 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_E9B0744912469DE2 ON units (category_id)');
         $this->addSql('COMMENT ON COLUMN units.slug IS \'(DC2Type:slug)\'');
         $this->addSql('COMMENT ON COLUMN units.created_at IS \'(DC2Type:datetime_immutable)\'');
-        $this->addSql('CREATE TABLE users (id UUID NOT NULL, name VARCHAR(255) NOT NULL, nickname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9A188FE64 ON users (nickname)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9E7927C74 ON users (email)');
-        $this->addSql('COMMENT ON COLUMN users.created_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('ALTER TABLE recipe_items ADD CONSTRAINT FK_F70D3D5259D8A214 FOREIGN KEY (recipe_id) REFERENCES recipes (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE recipe_items ADD CONSTRAINT FK_F70D3D52F8BD700D FOREIGN KEY (unit_id) REFERENCES units (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE recipes ADD CONSTRAINT FK_A369E2B5F8BD700D FOREIGN KEY (unit_id) REFERENCES units (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -70,6 +66,5 @@ final class Version20230324101621 extends AbstractMigration
         $this->addSql('DROP TABLE unit_characteristics');
         $this->addSql('DROP TABLE unit_cost');
         $this->addSql('DROP TABLE units');
-        $this->addSql('DROP TABLE users');
     }
 }

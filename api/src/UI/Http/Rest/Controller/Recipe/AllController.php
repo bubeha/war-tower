@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace UI\Http\Rest\Controller\Unit;
+namespace UI\Http\Rest\Controller\Recipe;
 
-use App\Game\Domain\Repository\Unit\FindAll;
+use App\Game\Domain\Repository\Recipe\FindAll;
 use OpenApi\Attributes as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -15,15 +15,15 @@ final class AllController
     /**
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    #[Route('/units', name: 'all_units', methods: ['GET'])]
+    #[Route('/recipes', name: 'all_recipes', methods: ['GET'])]
     #[OA\Response(
-        ref: '#/components/responses/units',
+        ref: '#/components/responses/recipes',
         response: 200,
     )]
-    #[OA\Tag(name: 'units')]
-    public function __invoke(FindAll $repository, NormalizerInterface $serializer): OpenApi
+    #[OA\Tag(name: 'recipes')]
+    public function __invoke(FindAll $repository, NormalizerInterface $normalizer): OpenApi
     {
-        $output = $serializer->normalize($repository->all());
+        $output = $normalizer->normalize($repository->all());
 
         return OpenApi::fromPayload($output, 200);
     }

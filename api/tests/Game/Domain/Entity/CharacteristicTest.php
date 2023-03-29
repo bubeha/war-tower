@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Game\Domain\Entity\Test;
+namespace App\Tests\Game\Domain\Entity;
 
 use App\Game\Domain\Entity\Characteristic;
 use App\Shared\Domain\ValueObject\DateTime;

@@ -1,18 +1,7 @@
 version: "3.9"
 
 services:
-  api:
-    build:
-      context: ./api/docker
-      dockerfile: development/nginx/Dockerfile
-
   php-fpm:
-    build:
-      context: ./api/docker
-      dockerfile: development/php-fpm/Dockerfile
-      args:
-        PHP_VERSION: 8.2
-        XDEBUG_VERSION: 3.2.0
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
       APP_ENV: "dev"
@@ -21,13 +10,6 @@ services:
       - "host.docker.internal:host-gateway"
 
   php-cli:
-    build:
-      context: ./api/docker
-      dockerfile: development/php-cli/Dockerfile
-      args:
-        PHP_VERSION: 8.2
-        XDEBUG_VERSION: 3.2.0
-        COMPOSER_VERSION: 2.5.4
     environment:
       PHP_IDE_CONFIG: "serverName=docker"
       APP_ENV: "dev"

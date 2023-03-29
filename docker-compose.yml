@@ -18,6 +18,9 @@ services:
       - traefik.docker.network=traefik-public
 
   api:
+    build:
+      context: ./api/docker
+      dockerfile: development/nginx/Dockerfile
     volumes:
       - "./api:/application"
     networks:
@@ -31,6 +34,12 @@ services:
       - traefik.http.services.api.loadBalancer.server.port=80
 
   php-fpm:
+    build:
+      context: ./api/docker
+      dockerfile: development/php-fpm/Dockerfile
+      args:
+        PHP_VERSION: 8.2
+        XDEBUG_VERSION: 3.2.0
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"
@@ -41,6 +50,13 @@ services:
       DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?serverVersion=15&charset=utf8"
 
   php-cli:
+    build:
+      context: ./api/docker
+      dockerfile: development/php-cli/Dockerfile
+      args:
+        PHP_VERSION: 8.2
+        XDEBUG_VERSION: 3.2.0
+        COMPOSER_VERSION: 2.5.4
     user: "$_UID:$_GID"
     volumes:
       - "./api:/application"
