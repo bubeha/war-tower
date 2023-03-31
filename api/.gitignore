@@ -19,3 +19,7 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> infection/infection ###
+/infection.json
+###< infection/infection ###

@@ -33,6 +33,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fakerphp/faker": "^1.21",
         "friendsofphp/php-cs-fixer": "^3.14",
+        "infection/infection": "^0.26.16",
         "mockery/mockery": "^1.5",
         "overtrue/phplint": "^9.0",
         "phpunit/phpunit": "^9.6",
@@ -50,7 +51,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "infection/extension-installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -95,6 +97,7 @@
         ],
         "php-cs-fixer": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer --config=./.php-cs-fixer.php --allow-risky=yes",
         "phplint": "phplint",
+        "infection": "infection",
         "rector": "rector",
         "psalm": "vendor/bin/psalm --config=psalm.xml",
         "test": "XDEBUG_MODE=coverage phpunit --colors=always",

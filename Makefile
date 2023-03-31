@@ -48,6 +48,9 @@ test:
 test-coverage:
 	$(DOCKER_COMPOSE) run --rm --no-deps php-cli composer run test-coverage
 
+infection:
+	$(DOCKER_COMPOSE) run --rm --no-deps php-cli composer run infection
+
 psalm:
 	$(DOCKER_COMPOSE) run --rm --no-deps php-cli composer run psalm -- --no-diff
 
