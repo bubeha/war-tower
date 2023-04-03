@@ -12,6 +12,7 @@ doctrine:
       experience: App\Shared\Infrastructure\Persistence\Doctrine\Types\ExperienceType
       money: App\Shared\Infrastructure\Persistence\Doctrine\Types\MoneyType
       slug: App\Shared\Infrastructure\Persistence\Doctrine\Types\SlugType
+      email: App\User\Infrastructure\Persistence\Doctrine\Types\EmailType
 
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'
