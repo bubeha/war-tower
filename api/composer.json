@@ -26,7 +26,8 @@
         "symfony/uid": "6.2.*",
         "symfony/yaml": "6.2.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "webmozart/assert": "^1.11"
     },
     "require-dev": {
         "dg/bypass-finals": "^1.4",
