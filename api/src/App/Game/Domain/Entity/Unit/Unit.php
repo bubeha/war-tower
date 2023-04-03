@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\Collection;
 class Unit
 {
     public function __construct(
-        private readonly Uuid $id,
+        private Uuid $id,
         private readonly Category $category,
         private Slug $slug,
         private string $name,

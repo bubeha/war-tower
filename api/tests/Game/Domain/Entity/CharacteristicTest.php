@@ -28,7 +28,7 @@ final class CharacteristicTest extends TestCase
         $name = $faker->name();
         $createdAt = DateTime::now();
 
-        $characteristic = new Characteristic($id, $name, $createdAt);
+        $characteristic = Characteristic::create($id, $name, $createdAt);
         assertSame($id, $characteristic->getId());
         assertSame($name, $characteristic->getName());
         assertSame($createdAt, $characteristic->getCreatedAt());
