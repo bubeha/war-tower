@@ -111,4 +111,4 @@ return
             'single_line_comment_style' => ['comment_types' => ['hash']],
             'trailing_comma_in_multiline' => ['after_heredoc' => true, 'elements' => ['arrays', 'arguments', 'parameters']],
         ])
-;
+    ;
