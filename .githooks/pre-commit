@@ -1,22 +1,22 @@
 #!/bin/bash
 
-if [ `git rev-parse --verify HEAD` ]; then
-	AGAINST='HEAD'
+if [ $(git rev-parse --verify HEAD) ]; then
+  AGAINST='HEAD'
 else
-	AGAINST='ee06326b8417a91222e71eff4afff8c53e80f8e7'
+  AGAINST='ee06326b8417a91222e71eff4afff8c53e80f8e7'
 fi
 
 CHANGED_FILES=$(git diff --diff-filter=d --cached --name-only $AGAINST)
 
-PHP_FILES="";
-PHP_FILES_COUNT=0;
+PHP_FILES=""
+PHP_FILES_COUNT=0
 
 for f in $CHANGED_FILES; do
-    if [[ $f =~ \.(php)$ ]]; then
-        PHP_FILES_COUNT=$PHP_FILES_COUNT+1
-        PHP_FILES="$PHP_FILES ${f##api/}"
-    fi
-done;
+  if [[ $f =~ \.(php)$ ]]; then
+    PHP_FILES_COUNT=$PHP_FILES_COUNT+1
+    PHP_FILES="$PHP_FILES ${f##api/}"
+  fi
+done
 
 if [[ $PHP_FILES_COUNT > 0 ]]; then
   BASEDIR=$(dirname "$0")
