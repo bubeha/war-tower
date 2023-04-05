@@ -28,7 +28,7 @@ final class UnitNormalizer implements NormalizerInterface
         return $result;
     }
 
-    public function supportsNormalization(mixed $data, ?string $format = null): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Unit;
     }
