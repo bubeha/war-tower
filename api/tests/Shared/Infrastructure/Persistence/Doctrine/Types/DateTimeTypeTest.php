@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Persistence\Doctrine\Types\Test;
+namespace App\Tests\Shared\Infrastructure\Persistence\Doctrine\Types;
 
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Infrastructure\Persistence\Doctrine\Types\DateTimeType;
 use DateTimeImmutable;
 use DG\BypassFinals;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
@@ -24,8 +25,11 @@ final class DateTimeTypeTest extends TestCase
 {
     private Type $type;
 
+    private AbstractPlatform $platform;
+
     /**
      * @throws \Doctrine\DBAL\Exception
+     * @throws \PHPUnit\Framework\MockObject\Exception|\PHPUnit\Framework\MockObject\Exception
      */
     protected function setUp(): void
     {
@@ -34,6 +38,7 @@ final class DateTimeTypeTest extends TestCase
         Type::overrideType(Types::DATETIME_IMMUTABLE, DateTimeType::class);
 
         $this->type = Type::getType(Types::DATETIME_IMMUTABLE);
+        $this->platform = $this->getPlatformMock();
     }
 
     public function testGivenTypeWhenGetSqlDeclarationThenItShouldPrintThePlatformString(): void
@@ -69,6 +74,30 @@ final class DateTimeTypeTest extends TestCase
         $this->expectException(ConversionException::class);
 
         $this->type->convertToPHPValue(12_345_678, new PostgreSQLPlatform());
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Types\ConversionException
+     */
+    public function testGivenTypeCorrectStringValueShouldReturnDateTime(): void
+    {
+        $dateTime = new DateTime('now');
+
+        self::assertInstanceOf(
+            DateTime::class,
+            $this->type->convertToPHPValue(
+                $dateTime->toString(),
+                new PostgreSQLPlatform(),
+            ),
+        );
+
+        self::assertSame(
+            $dateTime->format('Y-m-d H:i:s'),
+            $this->type->convertToPHPValue(
+                $dateTime->toString(),
+                new PostgreSQLPlatform(),
+            )->format('Y-m-d H:i:s'),
+        );
     }
 
     /**
@@ -110,5 +139,19 @@ final class DateTimeTypeTest extends TestCase
         $any = Mockery::any();
 
         $this->type->convertToDatabaseValue($any, new PostgreSQLPlatform());
+    }
+
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     */
+    private function getPlatformMock(): AbstractPlatform
+    {
+        $mockObject = $this->createMock(AbstractPlatform::class);
+
+        $mockObject->method('getDateTimeTypeDeclarationSQL')
+            ->willReturn('TIMESTAMP(0) WITHOUT TIME ZONE')
+        ;
+
+        return $mockObject;
     }
 }

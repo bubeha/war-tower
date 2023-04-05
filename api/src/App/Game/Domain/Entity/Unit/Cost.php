@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace App\Game\Domain\Entity\Unit;
 
 use App\Shared\Domain\ValueObject\Id\Uuid;
+use App\Shared\Domain\ValueObject\Money;
 
 /**
  * @final
  */
 class Cost
 {
-    public function __construct(private readonly Uuid $id, private readonly Unit $unit, private int $cost)
+    public function __construct(private readonly Uuid $id, private readonly Unit $unit, private Money $price)
     {
     }
 
-    public static function create(Uuid $id, Unit $unit, int $cost): self
+    public static function create(Uuid $id, Unit $unit, Money $cost): self
     {
         return new self($id, $unit, $cost);
     }
@@ -30,13 +31,13 @@ class Cost
         return $this->unit;
     }
 
-    public function getCost(): int
+    public function getPrice(): Money
     {
-        return $this->cost;
+        return $this->price;
     }
 
-    public function setCost(int $cost): void
+    public function setPrice(Money $price): void
     {
-        $this->cost = $cost;
+        $this->price = $price;
     }
 }

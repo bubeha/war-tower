@@ -7,6 +7,7 @@ namespace App\Game\Infrastructure\Persistence\Doctrine\Fixtures;
 use App\Game\Domain\Entity\Unit\Cost;
 use App\Game\Domain\Repository\Unit\FindAll;
 use App\Shared\Domain\ValueObject\Id\Uuid;
+use App\Shared\Domain\ValueObject\Money;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -50,7 +51,8 @@ final class CostFixture extends Fixture implements DependentFixtureInterface
         $result = [];
 
         foreach ($this->unitRepository->all() as $unit) {
-            $result[] = Cost::create(Uuid::generate(), $unit, \random_int(1, 1_000_000));
+            $original = \random_int(1, 1_000_000);
+            $result[] = Cost::create(Uuid::generate(), $unit, Money::fromOriginal($original));
         }
 
         return $result;
