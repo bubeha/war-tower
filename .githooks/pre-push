@@ -2,10 +2,11 @@
 
 BASEDIR=$(dirname "$0")
 SCRIPT_PATH="$BASEDIR/pre-push.d"
+
 for hook in ${SCRIPT_PATH}/*; do
   if [ -f "${hook}" ]; then
     echo "Running hook: $hook"
-    $hook
+    "${hook}"
 
     if [ $? != 0 ]; then
       exit 1
