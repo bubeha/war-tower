@@ -7,6 +7,9 @@ namespace App\User\Infrastructure\Persistence\Doctrine\Migrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class Version20230324101620 extends AbstractMigration
 {
     public function getDescription(): string

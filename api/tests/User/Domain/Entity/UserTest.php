@@ -7,6 +7,7 @@ namespace App\Tests\User\Domain\Entity;
 use App\Shared\Domain\ValueObject\DateTime;
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\User\Domain\Entity\User;
+use App\User\Domain\ValueObject\Email;
 use Exception;
 use Faker\Factory;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +30,7 @@ final class UserTest extends TestCase
 
         $name = $faker->name();
         $nickname = $faker->slug();
-        $email = $faker->email();
+        $email = Email::fromString($faker->email());
 
         $user = User::create($id, $name, $nickname, $email, $date);
 
@@ -51,7 +52,7 @@ final class UserTest extends TestCase
 
         $faker = Factory::create();
 
-        $user = User::create($id, $faker->name(), $faker->slug(), $faker->email(), $date);
+        $user = User::create($id, $faker->name(), $faker->slug(), Email::fromString($faker->email()), $date);
 
         $name = $faker->name();
         $user->setName($name);
@@ -61,7 +62,7 @@ final class UserTest extends TestCase
         $user->setNickname($nickname);
         self::assertSame($nickname, $user->getNickname());
 
-        $email = $faker->email();
+        $email = Email::fromString($faker->email());
         $user->setEmail($email);
         self::assertSame($email, $user->getEmail());
 

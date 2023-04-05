@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\User\Infrastructure\ReadModel\User;
+namespace App\User\Infrastructure\ReadModel;
 
 use App\Shared\Infrastructure\Persistence\Repository\PostgresRepository;
 use App\User\Domain\Entity\User;
