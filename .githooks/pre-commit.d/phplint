@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose run --rm --no-deps php-cli composer run phplint -- $1
+docker compose -f docker-compose.yml -f environments/dev/docker-compose.yml run --rm --no-deps php-cli composer run phplint -- $1

@@ -1,0 +1,2 @@
+#!/bin/bash
+docker compose -f docker-compose.yml -f environments/dev/docker-compose.yml run -T --rm --no-deps php-cli composer run php-cs-fixer fix -- --dry-run --diff
