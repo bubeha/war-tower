@@ -9,6 +9,6 @@
         <one-to-one field="unit" target-entity="App\Game\Domain\Entity\Unit\Unit" inversed-by="cost">
             <join-column name="unit_id" nullable="false" referenced-column-name="id"/>
         </one-to-one>
-        <field name="cost" type="integer" column="value"/>
+        <field name="price" type="money" column="value"/>
     </entity>
 </doctrine-mapping>

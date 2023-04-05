@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Persistence\Doctrine\Generator\Test;
+namespace App\Tests\Shared\Infrastructure\Persistence\Generator;
 
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Infrastructure\Persistence\Doctrine\Generator\UuidGenerator;

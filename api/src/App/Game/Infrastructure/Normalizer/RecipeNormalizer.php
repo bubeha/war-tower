@@ -22,7 +22,7 @@ final class RecipeNormalizer implements NormalizerInterface
                 'id' => $goal->getId()->toString(),
                 'name' => $goal->getName(),
                 'key' => $goal->getSlug()->toString(),
-                'cost' => ((int)$goal->getCost()?->getCost()) / 100,
+                'cost' => $goal->getCost()?->getPrice()->getOriginal(),
             ],
             'requirements' => $object->getItems()->map(static function (Item $item) {
                 $unit = $item->getUnit();
@@ -31,7 +31,7 @@ final class RecipeNormalizer implements NormalizerInterface
                     'id' => $item->getId()->toString(),
                     'name' => $unit->getName(),
                     'key' => $unit->getSlug()->toString(),
-                    'cost' => ((int)$unit->getCost()?->getCost()) / 100,
+                    'cost' => $unit->getCost()?->getPrice()->getOriginal(),
                     'quantity' => $item->getQuantity(),
                 ];
             })->toArray(),

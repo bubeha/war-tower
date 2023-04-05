@@ -17,7 +17,7 @@ final class UnitNormalizer implements NormalizerInterface
             'category' => $object->getCategory()->getName(),
             'name' => $object->getName(),
             'key' => $object->getSlug()->toString(),
-            'cost' => ((int)$object->getCost()?->getCost()) / 100,
+            'cost' => $object->getCost()?->getPrice()->getOriginal(),
         ];
 
         foreach ($object->getCharacteristics() as $characteristic) {

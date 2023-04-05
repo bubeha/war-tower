@@ -11,10 +11,14 @@ use Doctrine\DBAL\Types\IntegerType;
 
 final class MoneyType extends IntegerType
 {
-    private const TYPE = 'money';
+    public const TYPE = 'money';
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): int
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?int
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!$value instanceof Money) {
             throw ConversionException::conversionFailedInvalidType($value, $this->getName(), [Money::class]);
         }
@@ -22,18 +26,17 @@ final class MoneyType extends IntegerType
         return $value->getConverted();
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): Money
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Money
     {
+        if ($value === null) {
+            return null;
+        }
+
         if (!\is_numeric($value)) {
             throw ConversionException::conversionFailedFormat($value, $this->getName(), 'integer');
         }
 
         return Money::fromConverted((int)$value);
-    }
-
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
-    {
-        return true;
     }
 
     public function getName(): string

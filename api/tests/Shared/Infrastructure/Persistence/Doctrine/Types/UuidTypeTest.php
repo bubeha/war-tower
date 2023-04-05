@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Infrastructure\Persistence\Doctrine\Types\Test;
+namespace App\Tests\Shared\Infrastructure\Persistence\Doctrine\Types;
 
 use App\Shared\Domain\ValueObject\Id\Uuid;
 use App\Shared\Infrastructure\Persistence\Doctrine\Types\UuidType;
 use DG\BypassFinals;
-use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
 use Mockery;
@@ -22,6 +22,8 @@ final class UuidTypeTest extends TestCase
 {
     private Type $type;
 
+    private AbstractPlatform $platform;
+
     /**
      * @throws \Doctrine\DBAL\Exception
      */
@@ -34,11 +36,12 @@ final class UuidTypeTest extends TestCase
         }
 
         $this->type = Type::getType(UuidType::TYPE);
+        $this->platform = $this->getPlatformMock();
     }
 
     public function testGivenTypeWhenGetSqlDeclarationThenItShouldPrintThePlatformString(): void
     {
-        self::assertSame('UUID', $this->type->getSQLDeclaration([], new PostgreSQLPlatform()));
+        self::assertSame('UUID', $this->type->getSQLDeclaration([], $this->platform));
     }
 
     /**
@@ -46,7 +49,7 @@ final class UuidTypeTest extends TestCase
      */
     public function testGivenTypeWithEmptyValueShouldReturnNull(): void
     {
-        self::assertNull($this->type->convertToPHPValue(null, new PostgreSQLPlatform()));
+        self::assertNull($this->type->convertToPHPValue(null, $this->platform));
     }
 
     /**
@@ -58,7 +61,7 @@ final class UuidTypeTest extends TestCase
             Uuid::class,
             $this->type->convertToPHPValue(
                 Uuid::generate(),
-                new PostgreSQLPlatform(),
+                $this->platform,
             ),
         );
     }
@@ -67,14 +70,14 @@ final class UuidTypeTest extends TestCase
     {
         $this->expectException(ConversionException::class);
 
-        $this->type->convertToPHPValue(12_345_678, new PostgreSQLPlatform());
+        $this->type->convertToPHPValue(12_345_678, $this->platform);
     }
 
     public function testGivenTypeWithIncorrectStringValueShouldThrowException(): void
     {
         $this->expectException(ConversionException::class);
 
-        $this->type->convertToPHPValue('incorrect-string', new PostgreSQLPlatform());
+        $this->type->convertToPHPValue('incorrect-string', $this->platform);
     }
 
     /**
@@ -82,7 +85,7 @@ final class UuidTypeTest extends TestCase
      */
     public function testGivenTypeWithNullValueThenItShouldReturnNull(): void
     {
-        self::assertNull($this->type->convertToDatabaseValue(null, new PostgreSQLPlatform()));
+        self::assertNull($this->type->convertToDatabaseValue(null, $this->platform));
     }
 
     /**
@@ -92,7 +95,7 @@ final class UuidTypeTest extends TestCase
     {
         $uuid = Uuid::generate();
 
-        $value = $this->type->convertToDatabaseValue($uuid, new PostgreSQLPlatform());
+        $value = $this->type->convertToDatabaseValue($uuid, $this->platform);
 
         self::assertIsString($value);
         self::assertSame($uuid->toString(), $value);
@@ -103,6 +106,20 @@ final class UuidTypeTest extends TestCase
         $this->expectException(ConversionException::class);
         $any = Mockery::any();
 
-        $this->type->convertToDatabaseValue($any, new PostgreSQLPlatform());
+        $this->type->convertToDatabaseValue($any, $this->platform);
+    }
+
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     */
+    private function getPlatformMock(): AbstractPlatform
+    {
+        $mockObject = $this->createMock(AbstractPlatform::class);
+
+        $mockObject->method('getGuidTypeDeclarationSQL')
+            ->willReturn('UUID')
+        ;
+
+        return $mockObject;
     }
 }
